@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutomatiQA</title>
+    <meta name="description" content="A comprehensive QA management platform that uses Gemini AI to generate test scenarios, modular test cases decomposed across video walkthrough keyframes, and automation scripts from screenshots, URLs, videos, and documents.">
+    <meta property="og:title" content="AutomatiQA">
+    <meta property="og:description" content="A comprehensive QA management platform that uses Gemini AI to generate test scenarios, modular test cases decomposed across video walkthrough keyframes, and automation scripts from screenshots, URLs, videos, and documents.">
+    <meta name="qa-recorder-backend-url" content="auto">
+    <link rel="icon" type="image/png" href="/automatiqa-logo.png">
+    <script>
+      // Marker for the QA Recorder extension. The content script runs at
+      // document_start, so it cannot rely on <title>/<meta> being parsed; it
+      // re-checks this flag on DOMContentLoaded and after the app's handshake.
+      window.__AUTOMATIQA_APP__ = true;
+    </script>
+    <script>
+      (function() {
+        function isIgnoredError(msg) {
+          var m = String(msg || '').toLowerCase();
+          return m.includes('script error') || 
+                 m.includes('websocket') || 
+                 m.includes('vite') ||
+                 !msg || 
+                 msg === '[object Object]';
+        }
+
+        window.onerror = function(message, source, lineno, colno, error) {
+          var msg = String(message || (error && error.message) || '');
+          if (isIgnoredError(msg)) {
+            return true;
+          }
+          return false;
+        };
+        window.addEventListener('error', function(event) {
+          var msg = String(event.message || (event.error && event.error.message) || '');
+          var isResourceError = Boolean(event.target && event.target !== window);
+          if (isIgnoredError(msg) || isResourceError) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+        window.addEventListener('unhandledrejection', function(event) {
+          var reasonMsg = String(event.reason && event.reason.message ? event.reason.message : event.reason || '');
+          if (isIgnoredError(reasonMsg)) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+      })();
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>

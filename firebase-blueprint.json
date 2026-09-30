@@ -1,0 +1,308 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the platform",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email", "description": "The user's email address" },
+        "name": { "type": "string", "description": "The user's full name" },
+        "role": { "type": "string", "enum": ["Super Admin", "Admin", "Delivery Manager", "Spoc", "Team Member"], "description": "The user's role in the system" },
+        "assignedProjectIds": { "type": "array", "items": { "type": "string" }, "description": "List of project IDs assigned to the user" },
+        "status": { "type": "string", "enum": ["active", "inactive"], "description": "The user's account status" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "When the user account was created" }
+      },
+      "required": ["email", "name", "role"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "A QA project workspace",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "type": "string", "enum": ["Active", "Inactive"] },
+        "ownerEmail": { "type": "string", "format": "email" },
+        "allocatedUserEmails": { "type": "array", "items": { "type": "string" } },
+        "projectRoles": { "type": "object", "description": "Key-value pair of user emails to their project-level role" },
+        "syntheticUsers": { "type": "array", "items": { "type": "object" }, "description": "Synthetic users generated for testing" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "description", "status", "ownerEmail"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "A system notification",
+      "type": "object",
+      "properties": {
+        "recipientEmail": { "type": "string", "format": "email" },
+        "senderName": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["recipientEmail", "senderName", "type", "title", "message", "isRead", "timestamp"]
+    },
+    "Activity": {
+      "title": "Activity",
+      "description": "A logged user activity",
+      "type": "object",
+      "properties": {
+        "userEmail": { "type": "string", "format": "email" },
+        "userName": { "type": "string" },
+        "action": { "type": "string" },
+        "projectId": { "type": "string" },
+        "projectName": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userEmail", "userName", "action", "projectId", "projectName", "timestamp"]
+    },
+    "RagChunk": {
+      "title": "RagChunk",
+      "description": "A RAG document chunk with vector embedding",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "embedding": { "type": "array", "items": { "type": "number" } },
+        "vectorDimension": { "type": "number" },
+        "metadata": { "type": "object" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "embedding"]
+    },
+    "MobileExecutionRun": {
+      "title": "MobileExecutionRun",
+      "description": "A recorded mobile automation execution run report",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string" },
+        "appId": { "type": "string" },
+        "appName": { "type": "string" },
+        "deviceId": { "type": "string" },
+        "deviceName": { "type": "string" },
+        "passedSteps": { "type": "number" },
+        "failedSteps": { "type": "number" },
+        "totalSteps": { "type": "number" },
+        "status": { "type": "string" },
+        "executedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["projectId", "appId", "appName", "deviceId", "status"]
+    },
+    "Folder": {
+      "title": "Folder",
+      "description": "An organization folder in a project workspace",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storyId": { "type": "string" },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "acceptanceCriteria": { "type": "string" },
+        "parentFolderId": { "type": "string" },
+        "memberStoryIds": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "summary"]
+    },
+    "UserStoryItem": {
+      "title": "UserStoryItem",
+      "description": "A single user story document",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "storyId": { "type": "string" },
+        "summary": { "type": "string" },
+        "description": { "type": "string" },
+        "acceptanceCriteria": { "type": "string" },
+        "folderId": { "type": "string" },
+        "parentFolderId": { "type": "string" },
+        "isRemovedFromIndividual": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "summary"]
+    },
+    "FolderValue": {
+      "title": "FolderValue",
+      "description": "A generated value or parameter associated with a folder",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "value": { "type": "string" },
+        "type": { "type": "string" },
+        "folderId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id"]
+    },
+    "UIScreenshot": {
+      "title": "UIScreenshot",
+      "description": "Metadata for persistent UI testing screenshots stored in Firebase Storage",
+      "type": "object",
+      "properties": {
+        "screenshotId": { "type": "string", "description": "Unique identifier for the screenshot" },
+        "fileName": { "type": "string", "description": "Original file name" },
+        "storagePath": { "type": "string", "description": "Firebase Storage path" },
+        "downloadURL": { "type": "string", "format": "uri", "description": "Public or tokenized download URL" },
+        "folderId": { "type": "string", "description": "UI testing folder ID if organized into a folder" },
+        "projectId": { "type": "string", "description": "Parent project ID" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation" },
+        "fileSize": { "type": "number", "description": "File size in bytes" },
+        "contentType": { "type": "string", "description": "MIME type" }
+      },
+      "required": ["screenshotId", "fileName", "storagePath", "downloadURL", "createdAt"]
+    },
+    "TokenConsumptionLog": {
+      "title": "TokenConsumptionLog",
+      "description": "Audit and consumption log for AI token usage and credit accounting",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "feature": { "type": "string" },
+        "inputTokens": { "type": "number" },
+        "outputTokens": { "type": "number" },
+        "totalTokens": { "type": "number" },
+        "cost": { "type": "number" },
+        "timestamp": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "projectId": { "type": "string" }
+      },
+      "required": ["id", "feature", "timestamp"]
+    },
+    "ProjectPlan": {
+      "title": "ProjectPlan",
+      "description": "Project-level credit quota and active subscription plan",
+      "type": "object",
+      "properties": {
+        "projectId": { "type": "string" },
+        "projectName": { "type": "string" },
+        "planType": { "type": "string", "enum": ["Trial", "Paid"] },
+        "allocatedCredits": { "type": "number" },
+        "totalCredits": { "type": "number" },
+        "remainingCredits": { "type": "number" },
+        "consumedCredits": { "type": "number" },
+        "validityDays": { "type": "number" },
+        "cycleStartTimestamp": { "type": "number" },
+        "cycleEndTimestamp": { "type": "number" },
+        "status": { "type": "string" },
+        "lastRenewedBy": { "type": "string" },
+        "lastRenewedAt": { "type": "number" }
+      },
+      "required": ["projectId", "projectName", "planType", "allocatedCredits"]
+    },
+    "AIJob": {
+      "title": "AIJob",
+      "description": "Durable queued AI job for rate-limit protection and background execution",
+      "type": "object",
+      "properties": {
+        "idempotencyKey": { "type": "string" },
+        "taskType": { "type": "string" },
+        "featureName": { "type": "string" },
+        "projectId": { "type": "string" },
+        "userEmail": { "type": "string" },
+        "status": { "type": "string", "enum": ["QUEUED", "PROCESSING", "COMPLETED", "FAILED"] },
+        "retryCount": { "type": "number" },
+        "modelUsed": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["idempotencyKey", "taskType", "status"]
+    },
+    "AITelemetryLog": {
+      "title": "AITelemetryLog",
+      "description": "AI operation latency, quota, and reliability telemetry log",
+      "type": "object",
+      "properties": {
+        "taskType": { "type": "string" },
+        "model": { "type": "string" },
+        "status": { "type": "string" },
+        "latencyMs": { "type": "number" },
+        "retryCount": { "type": "number" },
+        "timestamp": { "type": "number" }
+      },
+      "required": ["taskType", "model", "status", "latencyMs", "timestamp"]
+    },
+    "AITestCaseJob": {
+      "title": "AITestCaseJob",
+      "description": "Durable parent job for AI test case generation from large files",
+      "type": "object",
+      "properties": {
+        "jobId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "userId": { "type": "string" },
+        "fileId": { "type": "string" },
+        "fileName": { "type": "string" },
+        "feature": { "type": "string" },
+        "status": { "type": "string", "enum": ["QUEUED", "PROCESSING", "COMPLETED", "FAILED"] },
+        "totalChunks": { "type": "number" },
+        "completedChunks": { "type": "number" },
+        "failedChunks": { "type": "number" },
+        "idempotencyKey": { "type": "string" },
+        "creditDeducted": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["jobId", "projectId", "userId", "fileId", "feature", "status"]
+    },
+    "AITestCaseChunk": {
+      "title": "AITestCaseChunk",
+      "description": "Child chunk job for large file AI test case generation",
+      "type": "object",
+      "properties": {
+        "chunkId": { "type": "string" },
+        "chunkIndex": { "type": "number" },
+        "status": { "type": "string", "enum": ["PENDING", "PROCESSING", "COMPLETED", "FAILED"] },
+        "attemptCount": { "type": "number" },
+        "resultLocation": { "type": "string" },
+        "errorCode": { "type": "string" },
+        "errorMessage": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["chunkId", "chunkIndex", "status"]
+    },
+    "UploadedFile": {
+      "title": "UploadedFile",
+      "description": "Metadata for durably stored uploaded files",
+      "type": "object",
+      "properties": {
+        "fileId": { "type": "string" },
+        "projectId": { "type": "string" },
+        "userId": { "type": "string" },
+        "fileName": { "type": "string" },
+        "fileSize": { "type": "number" },
+        "contentType": { "type": "string" },
+        "storagePath": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["fileId", "projectId", "fileName", "fileSize", "storagePath", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{email}": { "schema": "User", "description": "User profiles" },
+    "/projects/{projectId}": { "schema": "Project", "description": "Project data" },
+    "/projects/{projectId}/folders/{folderId}": { "schema": "Folder", "description": "Organization folders" },
+    "/projects/{projectId}/folders/{folderId}/stories/{storyId}": { "schema": "UserStoryItem", "description": "User stories within a folder" },
+    "/projects/{projectId}/folders/{folderId}/values/{valueId}": { "schema": "FolderValue", "description": "Generated values within a folder" },
+    "/projects/{projectId}/ui_screenshots/{screenshotId}": { "schema": "UIScreenshot", "description": "UI Testing screenshots in a project" },
+    "/ui_screenshots/{screenshotId}": { "schema": "UIScreenshot", "description": "Global UI Testing screenshots collection" },
+    "/notifications/{noteId}": { "schema": "Notification", "description": "User notifications" },
+    "/activities/{activityId}": { "schema": "Activity", "description": "Activity logs" },
+    "/rag_embeddings/{ragId}": { "schema": "RagChunk", "description": "RAG document vector embeddings" },
+    "/mobile_execution_runs/{runId}": { "schema": "MobileExecutionRun", "description": "Mobile automation test execution run records" },
+    "/token_consumption_logs/{logId}": { "schema": "TokenConsumptionLog", "description": "Token and credit consumption logs" },
+    "/project_plans/{planId}": { "schema": "ProjectPlan", "description": "Project level subscription and credit plans" },
+    "/ai_jobs/{jobId}": { "schema": "AIJob", "description": "Durable queued AI jobs" },
+    "/ai_telemetry_logs/{logId}": { "schema": "AITelemetryLog", "description": "AI reliability logs" },
+    "/ai_testcase_jobs/{jobId}": { "schema": "AITestCaseJob", "description": "Durable large file AI test case jobs" },
+    "/ai_testcase_jobs/{jobId}/chunks/{chunkId}": { "schema": "AITestCaseChunk", "description": "Individual chunks for AI test case job" },
+    "/uploaded_files/{fileId}": { "schema": "UploadedFile", "description": "Uploaded file metadata" }
+  }
+}

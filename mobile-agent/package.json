@@ -1,0 +1,18 @@
+{
+  "name": "automatiqa-mobile-agent",
+  "version": "1.0.0",
+  "description": "AutomatiQA Local Mobile Execution Agent for ADB, Android Emulator, and Appium",
+  "main": "dist/index.js",
+  "type": "commonjs",
+  "bin": {
+    "automatiqa-agent": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "keywords": ["automatiqa", "adb", "appium", "testing", "android"],
+  "author": "AutomatiQA Team",
+  "license": "MIT"
+}

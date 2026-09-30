@@ -1,0 +1,194 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Global Helper Functions
+    // ===============================================================
+    
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isUserEmail(email) {
+      return isAuthenticated() && request.auth.token.email == email;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "automatiqa@qaoncloud.com" ||
+         request.auth.token.email == "shanmugapriya@qaoncloud.com" ||
+         request.auth.token.email == "vinuta@qaoncloud.com" ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.token.email)) &&
+          (get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.role == 'Admin' ||
+           get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.role == 'Super Admin' ||
+           get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.role == 'SUPER_ADMIN')));
+    }
+
+    function isSuperAdmin() {
+      return isAuthenticated() && 
+        (request.auth.token.email == "automatiqa@qaoncloud.com" ||
+         request.auth.token.email == "shanmugapriya@qaoncloud.com" ||
+         request.auth.token.email == "vinuta@qaoncloud.com" ||
+         (exists(/databases/$(database)/documents/users/$(request.auth.token.email)) &&
+          (get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.role == 'Super Admin' ||
+           get(/databases/$(database)/documents/users/$(request.auth.token.email)).data.role == 'SUPER_ADMIN')));
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // 1. Users collection (keyed by user email)
+    match /users/{userEmail} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated();
+      allow delete: if isAuthenticated() && (isAdmin() || isUserEmail(userEmail));
+    }
+
+    // 2. Projects collection and nested subcollections (folders, stories, values, etc.)
+    match /projects/{projectId} {
+      allow read: if true;
+      allow create, update, delete: if isAuthenticated() || true;
+
+      match /{allSubcollections=**} {
+        allow read: if true;
+        allow create, update, delete: if isAuthenticated() || true;
+      }
+    }
+
+    // 3. Notifications collection
+    match /notifications/{noteId} {
+      allow read: if isAuthenticated() && (resource.data.recipientEmail == request.auth.token.email || isAdmin());
+      allow create: if isAuthenticated();
+      allow update: if isAuthenticated() && (resource.data.recipientEmail == request.auth.token.email || isAdmin());
+      allow delete: if isAuthenticated() && (resource.data.recipientEmail == request.auth.token.email || isAdmin());
+    }
+
+    // 4. Activities collection (real-time workspace audit and telemetry logs)
+    match /activities/{activityId} {
+      allow read: if true;
+      allow create: if true;
+      allow update, delete: if isAuthenticated() && isAdmin();
+    }
+
+    // 5. RAG Embeddings & Project Chunks
+    match /rag_embeddings/{ragId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // 6. Mobile & Performance Execution Reports
+    match /mobile_execution_runs/{runId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /jmeter_performance_runs/{runId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // 7. AI Scenarios
+    match /ai_scenarios/{scenarioId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    match /Aiscenario/{scenarioId} {
+      allow read, write: if isAuthenticated();
+    }
+
+    // 8. Token Consumption & AI Cache
+    match /token_consumption_logs/{logId} {
+      // Read: Users and admins can access token logs
+      allow read: if true;
+      // Write (Create / Update): Authenticated users and background AI telemetry tasks can record and update consumption logs
+      allow create, update: if true;
+      // Delete: Restricted to Admins and Super Admins
+      allow delete: if isAuthenticated() && (isAdmin() || isSuperAdmin());
+    }
+
+    match /ai_cache/{cacheId} {
+      allow read, write: if true;
+    }
+
+    match /ai_history/{historyId} {
+      allow read, write: if true;
+    }
+
+    // 9. Diagnostic & Connection test
+    match /_connection_test_/{docId} {
+      allow read: if true;
+    }
+
+    match /test/{docId} {
+      allow read: if true;
+    }
+
+    // 10. UI Testing Screenshots and Artifacts metadata
+    match /ui_screenshots/{screenshotId} {
+      allow read, write: if true;
+    }
+
+    match /artifacts/{artifactId} {
+      allow read, write: if true;
+    }
+
+    // 11. Subscription Requests & Project Plans
+    match /subscription_requests/{reqId} {
+      allow read, write: if isAuthenticated() || true;
+    }
+
+    match /project_plans/{planId} {
+      allow read: if true;
+      allow write: if isAuthenticated() || true;
+    }
+
+    match /user_credit_cycles/{cycleId} {
+      allow read, write: if true;
+    }
+
+    // 12. QA Copilot Knowledge & Telemetry Feedback
+    match /qa_copilot_knowledge/{docId} {
+      allow read: if true;
+      allow write: if isAuthenticated() && (isAdmin() || isSuperAdmin());
+    }
+
+    match /qa_copilot_feedback/{feedbackId} {
+      allow read, create: if true;
+      allow update, delete: if isAuthenticated() && isAdmin();
+    }
+
+    match /qa_copilot_questions/{questionId} {
+      allow read, write: if true;
+    }
+
+    // 13. AI Jobs Queue & Central Telemetry Logs
+    match /ai_jobs/{jobId} {
+      allow read: if true;
+      allow write: if isAuthenticated() || true;
+    }
+
+    match /ai_telemetry_logs/{logId} {
+      allow read: if isAuthenticated();
+      allow write: if true;
+    }
+
+    // 14. Large File AI Test Case Jobs & Chunks
+    match /ai_testcase_jobs/{jobId} {
+      allow read, write: if true;
+
+      match /chunks/{chunkId} {
+        allow read, write: if true;
+      }
+    }
+
+    // 15. Uploaded Files Metadata
+    match /uploaded_files/{fileId} {
+      allow read, write: if true;
+    }
+
+    // Default deny fallback
+    match /{path=**} {
+      allow read, write: if false;
+    }
+  }
+}

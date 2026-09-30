@@ -1,0 +1,48 @@
+# Node dependencies
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Build outputs
+dist
+dist-server
+build
+out
+
+# Version Control
+.git
+.gitignore
+.github
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# IDE & Editor files
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs & Cache
+logs
+*.log
+.cache
+tmp
+.aistudio
+
+# Local Uploads & Artifacts
+data/uploads/*
+data/artifacts/*
+public/artifacts/*
+data/project_backups/*
+mobile-agent/
+bun.lock

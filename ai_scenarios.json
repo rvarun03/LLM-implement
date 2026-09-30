@@ -1,0 +1,673 @@
+[
+  {
+    "id": "0oC4j00VAcvlcJZ9J17V",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"u07ce2zho\",\"scenarioId\":\"TS-AJIO-005\",\"title\":\"Category Menu Navigation in Header\",\"type\":\"Functional\",\"description\":\"The user interacts with the primary category links (Men, Women, Kids, Indie) located in the header navigation menu. The user clicks on 'Indie' to view the specific collection associated with that brand segment.\",\"expectedResults\":\"The main content area updates to display the landing page specific to the selected category (Indie) with relevant banners and products.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842849,
+        "nanoseconds": 975000000
+      }
+    }
+  },
+  {
+    "id": "1dPpo6a2djIeKjti4axm",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"gu37ia6yp\",\"scenarioId\":\"TS-007\",\"title\":\"Verify System Behavior Under Network Latency\",\"type\":\"Non-functional\",\"description\":\"Simulate a slow network connection (connectivity stress test). Trigger a dynamic search or filter update and observe the UI for loading indicators or timeout errors.\",\"expectedResults\":\"The system displays a visible loading state/spinner during the data fetch and gracefully renders the updated list once data is received without breaking the layout.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 696000000
+      }
+    }
+  },
+  {
+    "id": "3CX8TYi8YY6NbgqU0av0",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"z76cdh1zt\",\"scenarioId\":\"TS-003\",\"title\":\"Verify 'Categories' Tab Navigation\",\"type\":\"Functional\",\"description\":\"The user navigates to the 'Categories' tab located in the bottom navigation bar. Upon tapping, the user should see a categorized list of products (e.g., Women, Men, Kids, Home). The user selects a sub-category to ensure deep linking works as expected.\",\"expectedResults\":\"The Categories page loads effectively, showing the correct hierarchy of product types, and tapping a sub-category redirects to the specific product listing page.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 93000000
+      }
+    }
+  },
+  {
+    "id": "4ayutSETmao26Br0m0aE",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"8fabvd6u5\",\"scenarioId\":\"TS-003\",\"title\":\"Verify Filtering by Travel Dates and Booking Window\",\"type\":\"Functional\",\"description\":\"Access the filter options associated with the Deals list. Select a specific Travel Date range and a Booking Window. Apply the filters and observe the resulting list of deals.\",\"expectedResults\":\"The list refreshes to display only the deals that fall within the selected Travel Dates and Booking Window. If no deals match, an appropriate empty state message is displayed.\",\"moduleName\":\"Search & Filter\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 171000000
+      }
+    }
+  },
+  {
+    "id": "4vgKvpUfpsP2iBVzM2Xj",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"ftnjpr60f\",\"scenarioId\":\"TS-006\",\"title\":\"Network Availability Transition Handling\",\"type\":\"Non-functional\",\"description\":\"The user browses the product feed while the device is connected to a stable WiFi network. The user then switches the device to mobile data or simulates a network drop (Airplane mode) while attempting to load a product detail page.\",\"expectedResults\":\"The application should gracefully handle the network transition or loss by displaying a user-friendly 'No Internet Connection' retry screen without crashing.\",\"moduleName\":\"Mobile System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 466000000
+      }
+    }
+  },
+  {
+    "id": "5EodOM4JcjTckTstNOYK",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"a1nhyqn64\",\"scenarioId\":\"TS-007\",\"title\":\"Mobile Network Availability Handling\",\"type\":\"Non-functional\",\"description\":\"The user attempts to browse the product feed or perform a search while the device's internet connection is disabled or switched to Airplane mode. This tests the application's ability to detect network loss and display a user-friendly 'No Internet' error message or retry button.\",\"expectedResults\":\"The app displays a 'No Internet Connection' message and does not crash or show raw code errors.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 683000000
+      }
+    }
+  },
+  {
+    "id": "6Csm8CcW9rCUJapR9TbZ",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"bmhjpkyv5\",\"scenarioId\":\"TS-AJIO-001\",\"title\":\"Header Search Bar Functionality and Auto-Suggest\",\"type\":\"Functional\",\"description\":\"The user interacts with the global search bar located in the top header section of the application. The user enters a specific keyword such as 'Sneakers' or 'Puma'. The system should immediately process the input and display a dropdown of relevant auto-suggestions and categories.\",\"expectedResults\":\"The search bar accepts input, and relevant product suggestions or category links appear in real-time within a dropdown list.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842849,
+        "nanoseconds": 134000000
+      }
+    }
+  },
+  {
+    "id": "AmztuRTewkQn0SpNtr4N",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"0lok3q7ci\",\"scenarioId\":\"TS-005\",\"title\":\"Verify Footer Link - About Us\",\"type\":\"Functional\",\"description\":\"The user scrolls down to the bottom of the homepage to locate the footer section. The user clicks on the 'About Us' link under the corporate information column.\",\"expectedResults\":\"The browser should navigate to the Flipkart Corporate page displaying company history, leadership, and mission details.\",\"moduleName\":\"Bottom Icons/Options\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 662000000
+      }
+    }
+  },
+  {
+    "id": "CSncqqDHSMirkWd2VFch",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"chmdsbvjq\",\"scenarioId\":\"MAN-001\",\"title\":\"r\",\"type\":\"Functional\",\"description\":\"r\",\"expectedResults\":\"\",\"moduleName\":\"General\",\"isApproved\":true,\"testCases\":[],\"createdAt\":\"2026-01-31T07:28:43.821Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844528,
+        "nanoseconds": 80000000
+      }
+    }
+  },
+  {
+    "id": "D3bOMkJRhYybIu90ZM2E",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"zdlu8qb3b\",\"scenarioId\":\"TS-004\",\"title\":\"Verify 'Become a Seller' Navigation\",\"type\":\"Functional\",\"description\":\"The user looks for the 'Become a Seller' link within the top navigation header and clicks on it to access the seller portal.\",\"expectedResults\":\"The application should redirect the user to the Flipkart Seller Hub landing page containing registration and login options for vendors.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 539000000
+      }
+    }
+  },
+  {
+    "id": "DIVWFpNPrHZXNeYD31O9",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"xlnuu2zmz\",\"scenarioId\":\"TS-005\",\"title\":\"Verify Login Behavior During Network unavailability\",\"type\":\"Non-functional\",\"description\":\"The user enters a valid credential in the Login form. Before clicking 'Request OTP' or 'Login', the device's network connection is disabled (simulating airplane mode or signal loss). The user then attempts to submit the form.\",\"expectedResults\":\"The system detects the lack of connectivity and displays a 'No Internet Connection' or 'Something went wrong' toast message, preventing the application from hanging indefinitely.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844211,
+        "nanoseconds": 471000000
+      }
+    }
+  },
+  {
+    "id": "EsRPLDFE9v3PPgcAzcIT",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"7ptfii5a5\",\"scenarioId\":\"TS-004\",\"title\":\"Validate 'My Orders' Tab Access\",\"type\":\"Functional\",\"description\":\"The user taps on the 'My Orders' icon in the bottom navigation menu. The application should retrieve the history of past and current orders. The user attempts to view the details of the most recent order to check tracking status.\",\"expectedResults\":\"The Order History page is displayed with a chronological list of purchases. Clicking an order item reveals detailed tracking information and invoice options.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 219000000
+      }
+    }
+  },
+  {
+    "id": "F8b4wVkXgyCKO0jGx9lJ",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"jccpmxl50\",\"scenarioId\":\"TS-005\",\"title\":\"Validate Total Deals Counter Accuracy\",\"type\":\"Functional\",\"description\":\"Check the 'Total Number of Deals' indicator displayed on the page. Count the actual number of deal cards rendered in the list (both before and after applying filters) and compare.\",\"expectedResults\":\"The numeric value in the 'Total Number of Deals' indicator matches the actual count of deal cards visible on the screen.\",\"moduleName\":\"Deals Dashboard\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 496000000
+      }
+    }
+  },
+  {
+    "id": "FqCc4MAysHxVdDwT12DL",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "test"
+    }
+  },
+  {
+    "id": "FzyzJ5KOHdA8fN91R93q",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"ecvjj5p9x\",\"scenarioId\":\"TS-001\",\"title\":\"Header Search Bar Functionality\",\"type\":\"Functional\",\"description\":\"The user interacts with the global search bar located at the top of the home screen header. They input a specific product keyword (e.g., 'Saree' or 'Watch') and initiate the search to verify that the application redirects to the Product Listing Page (PLP) containing items relevant to the search query.\",\"expectedResults\":\"The search results page loads successfully displaying products matching the keyword.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845021,
+        "nanoseconds": 874000000
+      }
+    }
+  },
+  {
+    "id": "J13HqJZYbldFb6DHqzri",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"jwn68vieh\",\"scenarioId\":\"TS-007\",\"title\":\"App Visibility Under Low Battery Mode\",\"type\":\"Non-functional\",\"description\":\"The user operates the application on a device with less than 15% battery, triggering the OS 'Low Power Mode'. The user attempts to scroll through image-heavy feeds to verify if the app performance degrades or if images fail to render to save power.\",\"expectedResults\":\"The application should remain functional and responsive, though image loading might be slightly throttled; the UI should not freeze or crash under system resource constraints.\",\"moduleName\":\"Mobile System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 775000000
+      }
+    }
+  },
+  {
+    "id": "KoZxKUEGHodHl82QE5bB",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"wapsz4uxd\",\"scenarioId\":\"TS-007\",\"title\":\"Verify Empty State Handling\",\"type\":\"Functional\",\"description\":\"Enter a search term or apply a filter combination that is known to return zero results (e.g., searching for a non-existent partner name). Check the UI for user feedback.\",\"expectedResults\":\"The deal list clears, and a user-friendly message indicates that no deals were found matching the criteria, preventing user confusion.\",\"moduleName\":\"Search & Filter\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 581000000
+      }
+    }
+  },
+  {
+    "id": "OdG16zxEm3jGuBv3WSQF",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"9siieiuby\",\"scenarioId\":\"TS-002\",\"title\":\"Validate Deal Card Content Display\",\"type\":\"Functional\",\"description\":\"On the Deals page, inspect individual deal cards in the list. Verify that each card explicitly displays the Partner name, Location, Deal title/description, Travel dates, and Booking window.\",\"expectedResults\":\"All required fields (Partner, Location, Title, Dates, Booking Window) are visible and correctly formatted on each deal card.\",\"moduleName\":\"Deals Dashboard\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 165000000
+      }
+    }
+  },
+  {
+    "id": "SI0nCS52saNwVJkfLS1m",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"1kylgpxwt\",\"scenarioId\":\"TS-AJIO-004\",\"title\":\"Application Behavior During Network Loss\",\"type\":\"Non-functional\",\"description\":\"The user is browsing the product listing page via the mobile application. The device's network connectivity (WiFi/Data) is intentionally disabled to simulate signal loss. The user attempts to load more products or navigate to a new category.\",\"expectedResults\":\"The application displays a user-friendly 'No Internet Connection' message or banner and prevents the user from performing actions that require backend communication, without crashing.\",\"moduleName\":\"Mobile & Connectivity\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842849,
+        "nanoseconds": 874000000
+      }
+    }
+  },
+  {
+    "id": "SxIsnhXQUxOErDG3skdM",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"0wsuji6e6\",\"scenarioId\":\"TS-006\",\"title\":\"Verify Network Availability Handling\",\"type\":\"Non-functional\",\"description\":\"While browsing product categories, the device's network connection is intentionally disabled to simulate a connectivity loss. The user attempts to navigate to a new product page.\",\"expectedResults\":\"The system should detect the loss of connectivity and display a user-friendly 'No Internet Connection' error message or a 'Retry' button, rather than a generic browser timeout error.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 774000000
+      }
+    }
+  },
+  {
+    "id": "TiWTAR9CnZaijnaNAT8M",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"1c5tkfbiw\",\"scenarioId\":\"TS-002\",\"title\":\"Verify Login Modal Trigger\",\"type\":\"Functional\",\"description\":\"The user locates the 'Login' button in the top header area of the homepage. Upon clicking the button, the user waits for the authentication interface to appear.\",\"expectedResults\":\"A modal or popup window should open requesting the user's mobile number or email, without navigating away from the current page context.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 278000000
+      }
+    }
+  },
+  {
+    "id": "U4kozrGdCjRrWbrWqaeA",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"w4m9lpwyv\",\"scenarioId\":\"TS-003\",\"title\":\"Verify Cart Icon Navigation\",\"type\":\"Functional\",\"description\":\"The user identifies the 'Cart' icon within the header navigation bar. The user clicks on the icon to view the items currently saved for purchase.\",\"expectedResults\":\"The user should be redirected to the Shopping Cart page. If the cart is empty, a 'Missing Cart Items?' or 'Your cart is empty' message should be displayed along with a 'Shop Now' button.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 403000000
+      }
+    }
+  },
+  {
+    "id": "U6bvLZ6jjbQNCQ966fwk",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"3bt8zo3mq\",\"scenarioId\":\"TS-AJIO-003\",\"title\":\"Bag Icon Interaction in Header\",\"type\":\"Functional\",\"description\":\"The user locates the 'Bag' or 'Cart' icon in the top right corner of the header options. Upon tapping the icon, the user expects to view the shopping cart summary page, regardless of which page they are currently navigating.\",\"expectedResults\":\"The user is redirected to the Shopping Bag page displaying added items, total price, and checkout options.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842849,
+        "nanoseconds": 728000000
+      }
+    }
+  },
+  {
+    "id": "UncOE0m2lO6pT3JIi7HE",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"ntj0xibby\",\"scenarioId\":\"TS-002\",\"title\":\"Validate Notification Icon Interaction\",\"type\":\"Functional\",\"description\":\"The user taps on the 'Bell' icon located in the top right corner of the header. The system should navigate the user to the Notifications screen, displaying a list of order updates, promotional offers, and price drop alerts.\",\"expectedResults\":\"The Notifications screen is displayed correctly with the most recent alerts at the top, and unread notifications are clearly distinguished.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845320,
+        "nanoseconds": 966000000
+      }
+    }
+  },
+  {
+    "id": "X4c4wcfqz4Lb5DEVbGay",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"tqbegkbsd\",\"scenarioId\":\"TS-005\",\"title\":\"Bottom Navigation - My Orders Access\",\"type\":\"Functional\",\"description\":\"The user taps the 'My Orders' icon located in the bottom navigation bar. This scenario tests the retrieval of the user's order history, tracking details, and past purchases.\",\"expectedResults\":\"The Order History screen loads, listing active and past orders with status indicators.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 476000000
+      }
+    }
+  },
+  {
+    "id": "XKlNEyDeK5oErj7RPHLX",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"43xwhjnkq\",\"scenarioId\":\"TS-008\",\"title\":\"App Responsiveness on Low Battery Mode\",\"type\":\"Non-functional\",\"description\":\"The application is used to browse high-resolution image feeds while the mobile device is in 'Low Power' or 'Battery Saver' mode. The test observes if the app maintains usability without significant lag or UI distortion under restricted resource conditions.\",\"expectedResults\":\"The application remains responsive and functional despite the device's power-saving restrictions.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 804000000
+      }
+    }
+  },
+  {
+    "id": "Xt6T3NGymeo9FzQmpz3u",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"f58tkbosm\",\"scenarioId\":\"TS-008\",\"title\":\"Verify Cart Icon Interaction from Header\",\"type\":\"Functional\",\"description\":\"The user taps the 'Cart' icon located in the top header area after adding items. The user expects to be taken to the checkout review screen where price details, discounts, and item quantities are listed.\",\"expectedResults\":\"The Cart screen opens immediately, displaying the correct items, total price calculation, and a 'Continue' button for checkout.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 917000000
+      }
+    }
+  },
+  {
+    "id": "YexCg9BfhVR709dqBhNr",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"dvfvg7wk4\",\"scenarioId\":\"TS-004\",\"title\":\"Apply Travel Date and Booking Window Filters\",\"type\":\"Functional\",\"description\":\"Open the filter menu and set specific constraints for 'Travel Dates' and 'Booking Window'. Apply these filters to the main list.\",\"expectedResults\":\"The results list refreshes to show only deals that encompass the selected date ranges and booking windows.\",\"moduleName\":\"Search & Filters\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 380000000
+      }
+    }
+  },
+  {
+    "id": "a9ocVdEpMA5m6vlamsgU",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"cmlgo6ki2\",\"scenarioId\":\"TS-005\",\"title\":\"Verify 'Account' Tab and Profile Settings\",\"type\":\"Functional\",\"description\":\"The user selects the 'Account' or 'User' tab on the far right of the bottom navigation bar. The user checks for access to profile details, bank details for reselling payouts, and help center links.\",\"expectedResults\":\"The Account dashboard renders with the user's name, profile picture, and accessible links to settings, bank details, and customer support.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845321,
+        "nanoseconds": 340000000
+      }
+    }
+  },
+  {
+    "id": "b1Ej1yhKnW7s7x8czcND",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"58ugzi140\",\"scenarioId\":\"TS-001\",\"title\":\"Verify Product Search Functionality in Header\",\"type\":\"Functional\",\"description\":\"The user interacts with the search bar located at the top header of the home screen. The user enters a specific product keyword (e.g., 'Kurti') or a specific product code. The user initiates the search and verifies that the results page displays relevant items matching the query.\",\"expectedResults\":\"The search results page should load with products matching the keyword or specific product code, and the search bar should retain the query string.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:41:59.949Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845319,
+        "nanoseconds": 949000000
+      }
+    }
+  },
+  {
+    "id": "bUQXLB5xRiWJyQw9N2iK",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"tf8vrueyh\",\"scenarioId\":\"TS-002\",\"title\":\"Header Notification Icon Interaction\",\"type\":\"Functional\",\"description\":\"The user taps on the 'Bell' (Notification) icon situated in the top-right corner of the header. This action is performed to access the notification center where order updates, promotional offers, and price drop alerts are listed.\",\"expectedResults\":\"The notification screen opens, displaying a list of recent alerts and updates.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 173000000
+      }
+    }
+  },
+  {
+    "id": "bmt3WMCcw7POiqmVxGp9",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"ngott1n6y\",\"scenarioId\":\"TS-006\",\"title\":\"Verify Deal Details Popup Content\",\"type\":\"Functional\",\"description\":\"Click on a Deal card from the list. Wait for the popup window to appear and inspect its header and content, specifically looking for the text 'Custom Private Travel to Cuba'.\",\"expectedResults\":\"A popup window opens displaying specific deal details, including the title 'Custom Private Travel to Cuba' as required.\",\"moduleName\":\"Deal Interaction\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 592000000
+      }
+    }
+  },
+  {
+    "id": "bwUbBsvoHWnFgX0hWX21",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"7tu83t27z\",\"scenarioId\":\"TS-002\",\"title\":\"Verify Search Functionality by Partner, Location, and Keywords\",\"type\":\"Functional\",\"description\":\"Locate the search bar within the Header Options or top of the Deals module. Enter a specific Partner Name, Location, or generic keyword (e.g., 'Resort'). Observe the list behavior as characters are typed or upon submission.\",\"expectedResults\":\"The deals list updates dynamically to show only those records matching the search criteria. Irrelevant deals are hidden from the view.\",\"moduleName\":\"Search & Filter\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 62000000
+      }
+    }
+  },
+  {
+    "id": "fB8rwKXljg3nmWECam8O",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"kowoafoqx\",\"scenarioId\":\"TS-004\",\"title\":\"Verify Navigation to Terms of Use via Bottom Links\",\"type\":\"Functional\",\"description\":\"On the Login modal/screen, the user scrolls to the bottom area where 'Terms of Use' and 'Privacy Policy' links are located. The user clicks on the 'Terms of Use' link.\",\"expectedResults\":\"The application opens the Terms of Use page in a new tab or window, ensuring the user can read the legal text without losing the login context in the original tab.\",\"moduleName\":\"Bottom Icons/Options\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844211,
+        "nanoseconds": 311000000
+      }
+    }
+  },
+  {
+    "id": "fIdJYr2MgQRyhnPCC3Vh",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"8bpnut8b0\",\"scenarioId\":\"TS-004\",\"title\":\"Verify Dynamic Update of Deal Count\",\"type\":\"Functional\",\"description\":\"Observe the 'Total Number of Deals' indicator on the page. Perform various search and filtering actions to reduce the number of visible items. Compare the displayed total count against the actual number of deal cards rendered on the screen.\",\"expectedResults\":\"The total number of deals counter updates immediately and accurately reflects the count of currently visible deal cards after every search or filter action.\",\"moduleName\":\"Deals Dashboard\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 283000000
+      }
+    }
+  },
+  {
+    "id": "fNkUBqAyyPKft9DVyzhN",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"g7e8s961k\",\"scenarioId\":\"TS-003\",\"title\":\"Header Cart Icon Visibility and Access\",\"type\":\"Functional\",\"description\":\"The user locates and taps the 'Cart' icon in the header section. The test validates that the user is navigated to the shopping cart summary page, showing any previously added items or an empty cart state if no items were added.\",\"expectedResults\":\"The user is successfully redirected to the Cart screen showing item details and checkout options.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 288000000
+      }
+    }
+  },
+  {
+    "id": "fQZmFsqmagWaxkAzRHWF",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"nz6hshkvp\",\"scenarioId\":\"TS-007\",\"title\":\"Verify Page Load Performance\",\"type\":\"Non-functional\",\"description\":\"The user accesses the homepage with the network throttled to a standard 4G or 3G speed to simulate real-world mobile data conditions. The time taken for the 'Top Offers' carousel to render is observed.\",\"expectedResults\":\"The homepage elements, specifically the primary banner carousel, should load and become interactive within an acceptable time frame (e.g., under 3 seconds) to ensure a good user experience.\",\"moduleName\":\"System Status\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843611,
+        "nanoseconds": 888000000
+      }
+    }
+  },
+  {
+    "id": "fyjFJ2Qzo83OD44IGOMG",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"74ccva29k\",\"scenarioId\":\"TS-AJIO-007\",\"title\":\"Performance Under Low Battery Mode\",\"type\":\"Non-functional\",\"description\":\"The user operates the application while the mobile device is in 'Low Power Mode' or has critical battery levels (below 10%). The user attempts to scroll through heavy image lists on the Home screen to check for rendering lag or crashes.\",\"expectedResults\":\"The application remains stable and responsive, even if animations are reduced by the OS, and does not consume excessive resources leading to a crash.\",\"moduleName\":\"Mobile & Connectivity\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842850,
+        "nanoseconds": 192000000
+      }
+    }
+  },
+  {
+    "id": "ieocLnzrSVSLXaDk86ug",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"kuswm9jds\",\"scenarioId\":\"TS-AJIO-006\",\"title\":\"Bottom Navigation 'Stores' Tab Visibility\",\"type\":\"Functional\",\"description\":\"The user navigates through the bottom utility bar and selects the 'Stores' or 'Trends' tab. This action is intended to bring up the curated collections or brand-specific pages.\",\"expectedResults\":\"The view updates to show the Stores/Trends interface, and the bottom navigation tab indicator updates to reflect the current selection.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842850,
+        "nanoseconds": 72000000
+      }
+    }
+  },
+  {
+    "id": "jdVKugAxDsWu297OZwsH",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"turdxolr1\",\"scenarioId\":\"TS-005\",\"title\":\"Verify Deal Details Popup Interaction\",\"type\":\"Functional\",\"description\":\"Click on a specific deal card from the list. Verify that the system triggers a popup window modal. Specifically check for the content display titled 'Custom Private Travel to Cuba' as per specific acceptance criteria.\",\"expectedResults\":\"A popup window opens overlaying the dashboard. The popup displays the detailed content specifically matching 'Custom Private Travel to Cuba' or the relevant details of the clicked deal.\",\"moduleName\":\"Deals Interaction\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 383000000
+      }
+    }
+  },
+  {
+    "id": "lLFZhAZ11TFzLtuUKKGW",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"tmbhghnrx\",\"scenarioId\":\"TS-003\",\"title\":\"Verify Input Validation for Non-Numeric Characters\",\"type\":\"Functional\",\"description\":\"The user attempts to enter special characters or alphabets into the mobile number field in the Login modal. The system should either restrict typing these characters or display an immediate validation error message stating that only valid mobile numbers or email addresses are accepted.\",\"expectedResults\":\"The application prevents submission and displays an error message such as 'Please enter a valid Mobile number'.\",\"moduleName\":\"Login Form\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844211,
+        "nanoseconds": 146000000
+      }
+    }
+  },
+  {
+    "id": "mDtP31tEtRrMLGqDNNWG",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"6y8wief54\",\"scenarioId\":\"TS-001\",\"title\":\"Verify Default Deals List Display and Content\",\"type\":\"Functional\",\"description\":\"Navigate to the centralized Deals page and validate that the list of all available partner deals loads automatically. Verify that every deal card displays the required information including the Partner name, Location, Deal title/description, Travel dates, and Booking window.\",\"expectedResults\":\"The Deals page loads successfully displaying a list of all partners. Each deal card contains valid data for Partner Name, Location, Title, Description, Dates, and Booking Window without truncation or layout errors.\",\"moduleName\":\"Deals Dashboard\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765335,
+        "nanoseconds": 773000000
+      }
+    }
+  },
+  {
+    "id": "oEhQ0M5IsRK9p0y19mWp",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"nq58fxivq\",\"scenarioId\":\"TS-006\",\"title\":\"Verify 'New to Flipkart' Sign Up Navigation\",\"type\":\"Functional\",\"description\":\"The user, who does not have an account, views the Login modal and locates the 'New to Flipkart? Create an account' link positioned below the primary input fields. The user clicks this link.\",\"expectedResults\":\"The modal or page redirects the user to the Registration flow, changing the primary CTA from 'Login' to 'Continue' or 'Sign Up'.\",\"moduleName\":\"Login Form\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844211,
+        "nanoseconds": 700000000
+      }
+    }
+  },
+  {
+    "id": "rQMb5YiGmi9WUrocR1mO",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"h21rwzrgr\",\"scenarioId\":\"TS-006\",\"title\":\"Bottom Navigation - Account/Profile Tab\",\"type\":\"Functional\",\"description\":\"The user selects the 'Account' (or User Profile) tab on the far right of the bottom navigation bar. This flows into the profile settings menu where users can manage bank details, shared products, and profile information.\",\"expectedResults\":\"The Account menu renders correctly, showing user details and settings options.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 580000000
+      }
+    }
+  },
+  {
+    "id": "umzH8RTNuhEOzEP4vQ3g",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"w0wwk1hmn\",\"scenarioId\":\"TS-003\",\"title\":\"Verify Dynamic Search Functionality\",\"type\":\"Functional\",\"description\":\"Enter keywords (e.g., a specific Partner Name or Location like 'Cuba') into the search bar. Observe the list behavior while typing.\",\"expectedResults\":\"The list of deals updates dynamically in real-time, filtering out items that do not match the search criteria.\",\"moduleName\":\"Search & Filters\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765073,
+        "nanoseconds": 270000000
+      }
+    }
+  },
+  {
+    "id": "vCNl8IzC5WvM4gEsGyb4",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"xhp48o8xr\",\"scenarioId\":\"TS-001\",\"title\":\"Verify Navigation to Deals Page via Header Menu\",\"type\":\"Functional\",\"description\":\"As a logged-in travel advisor, access the main application header or navigation bar. Locate and click on the 'Deals' or 'Partner Deals' link to navigate to the centralized Deals page.\",\"expectedResults\":\"The user is successfully redirected to the Deals page, and the list of available partner deals is displayed.\",\"moduleName\":\"Header Options\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:24:32.795Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765072,
+        "nanoseconds": 795000000
+      }
+    }
+  },
+  {
+    "id": "vTKM1YR1bO12MYJXIoNi",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"1dgnxjvsb\",\"scenarioId\":\"TS-001\",\"title\":\"Verify Login Modal Trigger from Header\",\"type\":\"Functional\",\"description\":\"The user navigates to the homepage and locates the 'Login' button within the main Header Options. Upon clicking the button, the application should trigger the Login modal overlay, dimming the background content while keeping the header visible but inactive until the modal is closed.\",\"expectedResults\":\"The Login modal appears centered on the screen with the username/mobile input field focused.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844210,
+        "nanoseconds": 381000000
+      }
+    }
+  },
+  {
+    "id": "xOrvUUptMBLPZkXvvCAD",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"aonneme2g\",\"scenarioId\":\"TS-004\",\"title\":\"Bottom Navigation - Categories Tab\",\"type\":\"Functional\",\"description\":\"The user navigates using the bottom utility bar by tapping the 'Categories' tab. The test ensures the app switches from the Home feed to the hierarchical category view (e.g., Women, Men, Kids, Home Kitchen).\",\"expectedResults\":\"The application displays the Categories page with expandable sub-categories.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:37:01.874Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769845023,
+        "nanoseconds": 367000000
+      }
+    }
+  },
+  {
+    "id": "y4yOtq423o2ghJVXAhpW",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"xkwp15snl\",\"scenarioId\":\"TS-002\",\"title\":\"Verify OTP Request with Valid Mobile Number\",\"type\":\"Functional\",\"description\":\"Within the Login modal, the user enters a valid 10-digit mobile number into the input field and clicks the 'Request OTP' button. The system verifies the number format and initiates the OTP generation process.\",\"expectedResults\":\"The user is advanced to the OTP entry screen, and a confirmation message indicating the OTP has been sent to the registered mobile number is displayed.\",\"moduleName\":\"Login Form\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:23:30.380Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769844210,
+        "nanoseconds": 999000000
+      }
+    }
+  },
+  {
+    "id": "y7kWoN7tJoxJfmF50Acp",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"3gx30vwws\",\"scenarioId\":\"TS-AJIO-002\",\"title\":\"Navigation via Bottom Tab Bar to Account Section\",\"type\":\"Functional\",\"description\":\"From the Home screen, the user taps the 'Account' icon located in the persistent bottom navigation bar. This action intends to access user profile settings, order history, and saved addresses.\",\"expectedResults\":\"The application smoothly transitions from the Home view to the Account view, highlighting the Account icon in the bottom bar to indicate the active state.\",\"moduleName\":\"Bottom Navigation\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:00:49.134Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769842849,
+        "nanoseconds": 617000000
+      }
+    }
+  },
+  {
+    "id": "zP9nPvf7zM5OC4wXLkpk",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"q6qoaxzsl\",\"scenarioId\":\"TS-006\",\"title\":\"Verify Page Load Performance and API Latency\",\"type\":\"Non-functional\",\"description\":\"Measure the time taken to load the centralized Deals page and the time taken for the list to dynamically update when search terms are entered. Simulate varying network speeds (e.g., 3G, 4G) to ensure usability under slower connections.\",\"expectedResults\":\"The Deals page loads within acceptable performance benchmarks (e.g., under 2 seconds). Dynamic filtering feels instantaneous or displays a loading state if data fetch takes longer than a threshold.\",\"moduleName\":\"Performance\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-30T09:28:55.773Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769765336,
+        "nanoseconds": 463000000
+      }
+    }
+  },
+  {
+    "id": "zb4Qdsgk9Ga9VJQLo4si",
+    "data": {
+      "projectId": "automatiqa",
+      "module": "ScenarioGenerator",
+      "content": "{\"id\":\"sbh3gf9hb\",\"scenarioId\":\"TS-001\",\"title\":\"Verify Product Search Functionality\",\"type\":\"Functional\",\"description\":\"The user navigates to the homepage and locates the search bar in the header section. The user enters a valid product keyword (e.g., 'iPhone') and clicks the search icon or presses Enter to initiate the search.\",\"expectedResults\":\"The application should navigate to the search results page displaying products relevant to the entered keyword, with filter options visible on the sidebar.\",\"moduleName\":\"Header Elements\",\"isApproved\":false,\"testCases\":[],\"createdAt\":\"2026-01-31T07:13:30.581Z\"}",
+      "createdAt": {
+        "__type__": "Timestamp",
+        "seconds": 1769843610,
+        "nanoseconds": 583000000
+      }
+    }
+  }
+]

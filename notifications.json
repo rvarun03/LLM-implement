@@ -1,0 +1,722 @@
+[
+  {
+    "id": "0EhQAlwbkN6TQoD3HsN7",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Indihood",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:16:40.144Z"
+    }
+  },
+  {
+    "id": "kq1IsJENayJbXRgYXE3N",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-10T14:20:32.222Z"
+    }
+  },
+  {
+    "id": "ZxvSb4D4zLfiW78Xyotz",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-10T14:20:29.298Z"
+    }
+  },
+  {
+    "id": "7PSmYnUPLEis6AwHtOBv",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Aisiri (aisiri@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-10T05:03:36.414Z"
+    }
+  },
+  {
+    "id": "bwV4MGYa6ll0SEbPfh1l",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Udaya Priya T (udaya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-02T11:59:29.909Z"
+    }
+  },
+  {
+    "id": "hejXyFipKUqrXLmFPLkI",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "Vinuta",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-12T14:18:44.374Z"
+    }
+  },
+  {
+    "id": "Guw1NjBm1EkkvBsndpsS",
+    "data": {
+      "recipientEmail": "udaya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Pratheepa (pratheepa@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-13T08:27:39.112Z"
+    }
+  },
+  {
+    "id": "0BU1ADkRGTqyqQv6Vmqe",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - Healthcare",
+      "isRead": false,
+      "timestamp": "2026-06-16T10:08:20.474Z"
+    }
+  },
+  {
+    "id": "glvD6eu7hFdBGWJVNoIR",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-02T07:21:27.020Z"
+    }
+  },
+  {
+    "id": "PfXTDkoLdmxE8mUhro2W",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Udaya Priya T (udaya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-02T11:59:29.909Z"
+    }
+  },
+  {
+    "id": "yVsLlHDcFCn0ns4HHhD5",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-15T09:57:33.079Z"
+    }
+  },
+  {
+    "id": "JibnM8gk4JcURpL2h4rz",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "shan (shan@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-06-18T05:18:52.599Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "Whlahf11m7emSB9UwSDh",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Aisiri (aisiri@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-10T05:03:36.412Z"
+    }
+  },
+  {
+    "id": "qk0ZLO7Yg9iNX23b1GFH",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "Vinuta",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-09T13:13:54.541Z"
+    }
+  },
+  {
+    "id": "SdOucnCoEU7BrDxLaK8n",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Spoc by an administrator.",
+      "timestamp": "2026-07-02T04:59:07.824Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "653BJCa4RiOaUpcfrstF",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Super Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-15T09:56:18.440Z"
+    }
+  },
+  {
+    "id": "E9rNfy7ywm9rZ8uFRusG",
+    "data": {
+      "recipientEmail": "aisiri@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-15T10:11:59.113Z"
+    }
+  },
+  {
+    "id": "X8Qj9Kik9Nn96vPtP9vG",
+    "data": {
+      "recipientEmail": "aisiri@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Spoc by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-15T10:11:57.075Z"
+    }
+  },
+  {
+    "id": "NkgXWJzhFyOdss5vuSwt",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): PROJECT MOODLE",
+      "timestamp": "2026-05-25T05:53:40.789Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "0C2niRBAY5fab8v5nssp",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "priya (priya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-06-16T10:02:07.557Z"
+    }
+  },
+  {
+    "id": "LxVBuWDThxrDhUf9EI88",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Pratheepa (pratheepa@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-13T08:27:39.113Z"
+    }
+  },
+  {
+    "id": "xM8F5dnVwkIUZdgxWD7k",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "timestamp": "2026-07-02T04:59:59.835Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "emc1Xq6BIsqESs2JyuWb",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "priya (priya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-06-16T10:02:07.557Z"
+    }
+  },
+  {
+    "id": "CJJTsLuD0nsfeVU6bRwy",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - E-E Test",
+      "timestamp": "2026-07-02T04:58:19.363Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "sbM6mY6K7Y9gniPeAlWg",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T04:39:34.235Z"
+    }
+  },
+  {
+    "id": "Cn9RuxpAAfgFmJlyj7yg",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-10T14:20:35.672Z"
+    }
+  },
+  {
+    "id": "PCAiGq2VFcOKMLnOMh8t",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - Healthcare, PROJECT MOODLE, Project  - Test",
+      "isRead": false,
+      "timestamp": "2026-06-24T07:10:26.831Z"
+    }
+  },
+  {
+    "id": "4VegRlyY0takyJKrgnyw",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-24T07:13:09.374Z"
+    }
+  },
+  {
+    "id": "vVmEvVaX9jjDUON8YwSy",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - E-E Test",
+      "isRead": false,
+      "timestamp": "2026-07-02T09:35:50.677Z"
+    }
+  },
+  {
+    "id": "rJSWFBZAvLCqEnsg7A7s",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - E-E Test",
+      "isRead": false,
+      "timestamp": "2026-07-02T09:35:51.968Z"
+    }
+  },
+  {
+    "id": "JDxkgnABQaizk8wWUPpZ",
+    "data": {
+      "isRead": false,
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Super Admin by an administrator.",
+      "senderName": "shanmugapriya",
+      "timestamp": "2026-07-16T06:01:15.801Z",
+      "type": "SYSTEM"
+    }
+  },
+  {
+    "id": "Tcnh8yRuMVJZhBuANeFW",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Delivery Manager by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T04:34:50.973Z"
+    }
+  },
+  {
+    "id": "EDpdnVvyqXfUECh27dJA",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Delivery Manager by an administrator.",
+      "timestamp": "2026-07-02T04:59:31.183Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "IRI7AhHozulUqFn3GEj5",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Test New",
+      "timestamp": "2026-06-16T10:03:27.306Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "O409V8be5oQEveLxUU5T",
+    "data": {
+      "recipientEmail": "aisiri@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Super Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-15T10:10:48.674Z"
+    }
+  },
+  {
+    "id": "vbq39ukpMtIweD7cU8oa",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Pratheepa (pratheepa@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-13T08:27:39.111Z"
+    }
+  },
+  {
+    "id": "ytvWmFs5h2IHHRCpNsEY",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "shan (shan@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:18:52.599Z"
+    }
+  },
+  {
+    "id": "U5PC4bEP0GtDc4fOMlYa",
+    "data": {
+      "recipientEmail": "aisiri@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Machaxi",
+      "isRead": false,
+      "timestamp": "2026-07-10T05:10:57.840Z"
+    }
+  },
+  {
+    "id": "2MWSZW3wSa7Q4cs3g855",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Udaya Priya T (udaya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-07-02T11:59:29.909Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "nSN1AD9NnZqfaTRIu912",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Spoc by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T04:38:08.315Z"
+    }
+  },
+  {
+    "id": "xAEmoSMyLYyxDigETuyq",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-24T07:13:10.930Z"
+    }
+  },
+  {
+    "id": "UgV81UGOGoxB1S1fPo6H",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Tanushree Swar (tanushree@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-06-10T13:49:55.098Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "Cf2bwH5a1oVMGOZm6SBa",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "priya (priya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-06-16T10:02:07.555Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "LXNCPotMh3tn2uKouNDq",
+    "data": {
+      "recipientEmail": "sowbarnya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-06T10:08:48.138Z"
+    }
+  },
+  {
+    "id": "Rs2DLZyq7JQZtGnOM2YW",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Sowbarnya (sowbarnya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-02T04:57:39.925Z"
+    }
+  },
+  {
+    "id": "YSWONz42uqO3kjYUuRMc",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "priya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Delivery Manager by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:07:08.744Z"
+    }
+  },
+  {
+    "id": "mECNKyvIJ1aR98G8DYnP",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project-July",
+      "isRead": false,
+      "timestamp": "2026-07-03T11:29:16.910Z"
+    }
+  },
+  {
+    "id": "MlKorvuAK0YalXC1o1qb",
+    "data": {
+      "recipientEmail": "udaya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Aisiri (aisiri@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-10T05:03:36.414Z"
+    }
+  },
+  {
+    "id": "b7pLHmiZCfCJScMLKVRW",
+    "data": {
+      "recipientEmail": "tanushree@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Indihood",
+      "isRead": false,
+      "timestamp": "2026-06-10T14:21:12.251Z"
+    }
+  },
+  {
+    "id": "xTxZNkz8lNyd6ZZ7dmRo",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T04:40:30.656Z"
+    }
+  },
+  {
+    "id": "sfaRIUJGANczPrwYJB8i",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "priya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Team Member by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:14:03.244Z"
+    }
+  },
+  {
+    "id": "Zaa8fUVDF3bb2eJiKQL2",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - Healthcare",
+      "timestamp": "2026-06-16T10:08:20.859Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "nwtgHoAHVDOwyGm975sM",
+    "data": {
+      "recipientEmail": "shan@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - Healthcare",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:20:11.944Z"
+    }
+  },
+  {
+    "id": "Li42ueKdtkw91fHvjNxe",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Indihood",
+      "isRead": false,
+      "timestamp": "2026-06-10T14:21:08.462Z"
+    }
+  },
+  {
+    "id": "FTSXBhtE1lYR2CTdwWPC",
+    "data": {
+      "recipientEmail": "vinuta@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Udaya Priya T (udaya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "isRead": false,
+      "timestamp": "2026-07-02T11:59:29.909Z"
+    }
+  },
+  {
+    "id": "Nw5jyGdR9HW6JWG2AUA1",
+    "data": {
+      "recipientEmail": "udaya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "SYSTEM",
+      "title": "Role Updated",
+      "message": "Your platform role has been updated to Admin by an administrator.",
+      "isRead": false,
+      "timestamp": "2026-07-02T12:03:30.767Z"
+    }
+  },
+  {
+    "id": "Imczp3Ri8g8907dJgGRo",
+    "data": {
+      "recipientEmail": "priya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Indihood",
+      "isRead": false,
+      "timestamp": "2026-06-18T05:16:40.447Z"
+    }
+  },
+  {
+    "id": "YXkfHonDRA17hRDFVPDk",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "shanmugapriya",
+      "type": "PROJECT_ASSIGNMENT",
+      "title": "Project Access Granted",
+      "message": "You have been assigned to the following project(s): Project - Healthcare",
+      "timestamp": "2026-05-28T13:01:39.404Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "Mx6o1ItqnJr4d1zsChYq",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Vinuta (vinuta@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-06-10T13:47:11.977Z",
+      "isRead": true
+    }
+  },
+  {
+    "id": "0fNaqU5rzGOblNHukJba",
+    "data": {
+      "recipientEmail": "shanmugapriya@qaoncloud.com",
+      "senderName": "System Engine",
+      "type": "USER_SIGNUP",
+      "title": "New User Signup",
+      "message": "Sowbarnya (sowbarnya@qaoncloud.com) has created an account and requires workspace allocation.",
+      "timestamp": "2026-07-02T04:57:39.924Z",
+      "isRead": true
+    }
+  }
+]

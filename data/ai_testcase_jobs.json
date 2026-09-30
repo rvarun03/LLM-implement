@@ -1,0 +1,221 @@
+[
+  {
+    "jobId": "job_1789979236230_4cfac33f",
+    "projectId": "8Vmmadoxmf0xlmfSMZ3f",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileId": "file_1789979226126_06ce6591",
+    "fileName": "file_1789978602679_238f731c_test_doc.txt",
+    "feature": "AI_TEST_CASES",
+    "status": "COMPLETED",
+    "totalChunks": 1,
+    "completedChunks": 1,
+    "failedChunks": 0,
+    "idempotencyKey": "job_8Vmmadoxmf0xlmfSMZ3f_file_1789979226126_06ce6591",
+    "creditDeducted": true,
+    "stage": "Test cases generated successfully.",
+    "createdAt": "2026-09-21T08:27:16.230Z",
+    "updatedAt": "2026-09-21T08:27:40.346Z",
+    "mergedScenarios": [
+      {
+        "id": "sc_1789979257955_1_ljl8q",
+        "scenarioId": "TS-001",
+        "title": "Successful User Login",
+        "type": "Functional",
+        "scenarioCategory": "Positive",
+        "description": "Verify that a registered user can log in successfully with valid credentials.",
+        "expectedResults": "User is redirected to the product browsing page and session is established.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1789979257955_1_0",
+            "testCaseId": "TC-1-01",
+            "title": "Login with valid email and password",
+            "preconditions": "User account exists in the system.",
+            "steps": [
+              "1. Navigate to the login page.",
+              "2. Enter valid email address.",
+              "3. Enter valid password.",
+              "4. Click the Login button."
+            ],
+            "expectedResult": "User is authenticated and redirected to the product catalog.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-09-21T08:27:37.955Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "High",
+        "tags": [
+          "Positive",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      },
+      {
+        "id": "sc_1789979257955_2_zcqg5",
+        "scenarioId": "TS-002",
+        "title": "Login with Invalid Credentials",
+        "type": "Functional",
+        "scenarioCategory": "Negative",
+        "description": "Verify that the system denies access when invalid credentials are provided.",
+        "expectedResults": "System displays an error message and prevents access.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1789979257955_2_0",
+            "testCaseId": "TC-1-02",
+            "title": "Login with incorrect password",
+            "preconditions": "User account exists.",
+            "steps": [
+              "1. Navigate to the login page.",
+              "2. Enter valid email.",
+              "3. Enter incorrect password.",
+              "4. Click the Login button."
+            ],
+            "expectedResult": "System displays 'Invalid email or password' error message.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-09-21T08:27:37.955Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "High",
+        "tags": [
+          "Negative",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      },
+      {
+        "id": "sc_1789979257955_3_32428",
+        "scenarioId": "TS-003",
+        "title": "Checkout with Valid Credit Card",
+        "type": "Functional",
+        "scenarioCategory": "Positive",
+        "description": "Verify the end-to-end checkout process with valid payment details.",
+        "expectedResults": "Order is successfully placed and confirmation is displayed.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1789979257955_3_0",
+            "testCaseId": "TC-1-03",
+            "title": "Complete purchase with valid card",
+            "preconditions": "User is logged in and has items in the cart.",
+            "steps": [
+              "1. Navigate to the cart page.",
+              "2. Click Checkout.",
+              "3. Enter valid credit card details.",
+              "4. Submit the payment."
+            ],
+            "expectedResult": "Order confirmation page is displayed with an order ID.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-09-21T08:27:37.955Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "High",
+        "tags": [
+          "Positive",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      },
+      {
+        "id": "sc_1789979257955_4_ucgxq",
+        "scenarioId": "TS-004",
+        "title": "Checkout with Empty Cart",
+        "type": "Functional",
+        "scenarioCategory": "Edge",
+        "description": "Verify system behavior when attempting to checkout with no items in the cart.",
+        "expectedResults": "Checkout button is disabled or user is redirected to product page.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1789979257955_4_0",
+            "testCaseId": "TC-1-04",
+            "title": "Attempt checkout with zero items",
+            "preconditions": "User is logged in.",
+            "steps": [
+              "1. Navigate to the cart page.",
+              "2. Verify cart is empty.",
+              "3. Attempt to click Checkout."
+            ],
+            "expectedResult": "Checkout button is disabled or an error message 'Cart is empty' is shown.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-09-21T08:27:37.955Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "Medium",
+        "tags": [
+          "Edge",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      },
+      {
+        "id": "sc_1789979257955_5_jnpwy",
+        "scenarioId": "TS-005",
+        "title": "Checkout with Invalid Credit Card",
+        "type": "Functional",
+        "scenarioCategory": "Negative",
+        "description": "Verify that the system handles declined or invalid credit card information.",
+        "expectedResults": "Payment is rejected and user remains on the checkout page.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1789979257955_5_0",
+            "testCaseId": "TC-1-05",
+            "title": "Submit payment with expired card",
+            "preconditions": "User is at the payment step of checkout.",
+            "steps": [
+              "1. Enter valid card number.",
+              "2. Enter an expired date.",
+              "3. Click Pay."
+            ],
+            "expectedResult": "System displays 'Payment declined: Card expired' error.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-09-21T08:27:37.955Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "High",
+        "tags": [
+          "Negative",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      }
+    ]
+  },
+  {
+    "jobId": "job_1789986340099_afd2d9e3",
+    "projectId": "BCK2",
+    "userId": "sowbarnya@qaoncloud.com",
+    "fileId": "file_1789985849427_9b3ce241",
+    "fileName": "KDK_User_Management_BDD_Flow.docx",
+    "feature": "AI_TEST_CASES",
+    "status": "PROCESSING",
+    "totalChunks": 1,
+    "completedChunks": 0,
+    "failedChunks": 0,
+    "idempotencyKey": "job_BCK2_file_1789985849427_9b3ce241",
+    "creditDeducted": false,
+    "stage": "Analyzing document: 0/1 sections",
+    "createdAt": "2026-09-21T10:25:40.099Z",
+    "updatedAt": "2026-09-21T10:25:40.379Z"
+  }
+]

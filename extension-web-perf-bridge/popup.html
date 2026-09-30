@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AutomatiQA Web Performance Bridge</title>
+  <style>
+    body {
+      width: 320px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 13px;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #334155;
+    }
+    .logo-badge {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+      color: #38bdf8;
+    }
+    .status-card {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 12px;
+      border: 1px solid #334155;
+    }
+    .status-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .status-row:last-child {
+      margin-bottom: 0;
+    }
+    .label {
+      color: #94a3b8;
+    }
+    .badge {
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+    .badge-success {
+      background: #064e3b;
+      color: #34d399;
+      border: 1px solid #059669;
+    }
+    .badge-danger {
+      background: #450a0a;
+      color: #f87171;
+      border: 1px solid #dc2626;
+    }
+    .badge-warning {
+      background: #451a03;
+      color: #fbbf24;
+      border: 1px solid #d97706;
+    }
+    .instructions {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.4;
+    }
+    .btn {
+      width: 100%;
+      background: #0284c7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #0369a1;
+    }
+    .btn-auth {
+      background: #d97706;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .btn-auth:hover {
+      background: #b45309;
+    }
+    .ssl-help-box {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: #451a03;
+      border: 1px solid #d97706;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #fef3c7;
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo-badge">⚡</div>
+    <h1>Web Performance Bridge</h1>
+  </div>
+
+  <div class="status-card">
+    <div class="status-row">
+      <span class="label">Bridge Extension:</span>
+      <span class="badge badge-success">Active (v1.0.0)</span>
+    </div>
+    <div class="status-row">
+      <span class="label">Target Endpoint:</span>
+      <span style="font-family: monospace; font-size: 11px; color: #cbd5e1;">wss://localhost:9334</span>
+    </div>
+    <div class="status-row">
+      <span class="label">Agent Status:</span>
+      <span id="agent-status-badge" class="badge badge-warning">Checking...</span>
+    </div>
+  </div>
+
+  <div id="ssl-help-container" class="ssl-help-box">
+    <strong>⚠️ SSL Approval Required:</strong><br>
+    Chrome requires a one-time approval for the local self-signed certificate on port 9334.<br><br>
+    Click the button below to open <code>https://localhost:9334/status</code>, click <strong>"Advanced" &rarr; "Proceed to localhost (unsafe)"</strong>, then return here.
+    <button id="auth-ssl-btn" class="btn btn-auth">🔓 1-Click Authorize SSL Certificate</button>
+  </div>
+
+  <div class="instructions" style="margin-top: 10px;">
+    This extension bridges the <strong>Google AI Studio Web Performance Testing UI</strong> to your local AutomatiQA recording agent.
+  </div>
+
+  <button id="retry-btn" class="btn">Check Agent Connection</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>

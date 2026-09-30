@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 75" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="hInfGrad" x1="5%" y1="30%" x2="95%" y2="65%">
+      <stop offset="0%" stop-color="#003893" />
+      <stop offset="22%" stop-color="#005BEA" />
+      <stop offset="45%" stop-color="#0096C7" />
+      <stop offset="62%" stop-color="#00B4D8" />
+      <stop offset="80%" stop-color="#00C9A7" />
+      <stop offset="92%" stop-color="#00D26A" />
+      <stop offset="100%" stop-color="#00E676" />
+    </linearGradient>
+
+    <linearGradient id="hQaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#087E8B" />
+      <stop offset="40%" stop-color="#00A896" />
+      <stop offset="80%" stop-color="#00D26A" />
+      <stop offset="100%" stop-color="#00E676" />
+    </linearGradient>
+
+    <mask id="hPixelMask">
+      <rect x="0" y="0" width="380" height="75" fill="white" />
+      <path 
+        d="M 82 17 C 92 17, 106 24, 106 36" 
+        stroke="black" 
+        stroke-width="16" 
+        stroke-linecap="square" 
+        fill="none" 
+      />
+    </mask>
+  </defs>
+
+  <!-- INFINITY SYMBOL ON LEFT -->
+  <g id="h-infinity">
+    <!-- Center (60, 37.5). Left (30, 37.5), Right (90, 37.5) -->
+    <path 
+      d="M 60 37.5 
+         C 71 22, 80 17, 90 17 
+         C 102 17, 112 26, 112 37.5 
+         C 112 49, 100 58, 90 58 
+         C 80 58, 71 49, 60 37.5 
+         C 49 26, 40 17, 30 17 
+         C 18 17, 8 26, 8 37.5 
+         C 8 49, 18 58, 30 58 
+         C 40 58, 49 49, 60 37.5 Z" 
+      stroke="url(#hInfGrad)" 
+      stroke-width="11.5" 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      mask="url(#hPixelMask)"
+      fill="none" 
+    />
+
+    <!-- Digital Pixel Blocks -->
+    <g id="h-pixel-blocks">
+      <rect x="84" y="12" width="5.5" height="5.5" rx="1" fill="#00C9A7" />
+      <rect x="91" y="12" width="5.5" height="5.5" rx="1" fill="#00D26A" />
+      <rect x="98" y="12" width="5.5" height="5.5" rx="1" fill="#00E676" />
+      <rect x="105" y="12" width="5.5" height="5.5" rx="1" fill="#00D26A" />
+
+      <rect x="84" y="19" width="5.5" height="5.5" rx="1" fill="#00B4D8" />
+      <rect x="91" y="19" width="5.5" height="5.5" rx="1" fill="#00C9A7" />
+      <rect x="98" y="19" width="5.5" height="5.5" rx="1" fill="#00D26A" />
+      <rect x="105" y="19" width="5.5" height="5.5" rx="1" fill="#00E676" />
+
+      <rect x="98" y="26" width="5.5" height="5.5" rx="1" fill="#00C9A7" />
+      <rect x="105" y="26" width="5.5" height="5.5" rx="1" fill="#00D26A" />
+
+      <!-- Floating pixels -->
+      <rect x="112" y="12" width="5" height="5" rx="1" fill="#00E676" />
+      <rect x="105" y="5" width="5" height="5" rx="1" fill="#00D26A" />
+      <rect x="112" y="19" width="5" height="5" rx="1" fill="#00C9A7" />
+      <rect x="112" y="5" width="4.5" height="4.5" rx="1" fill="#00E676" />
+      <rect x="118" y="12" width="4.5" height="4.5" rx="1" fill="#00D26A" />
+    </g>
+  </g>
+
+  <!-- TEXT ON RIGHT -->
+  <g font-family="'Outfit', 'Inter', -apple-system, system-ui, sans-serif">
+    <text x="136" y="42" font-size="35" font-weight="900" letter-spacing="-0.6">
+      <tspan fill="#06152D">Automati</tspan>
+      <tspan fill="url(#hQaGrad)">QA</tspan>
+    </text>
+
+    <!-- Tagline -->
+    <text x="138" y="59" font-size="8.5" font-weight="700" fill="#06152D" letter-spacing="2.8">
+      FASTER <tspan fill="#00D26A" font-size="10">•</tspan> SMARTER <tspan fill="#00D26A" font-size="10">•</tspan> RELIABLE
+    </text>
+  </g>
+</svg>

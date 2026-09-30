@@ -1,0 +1,24 @@
+[
+  {
+    "fileId": "file_1789979226126_06ce6591",
+    "projectId": "8Vmmadoxmf0xlmfSMZ3f",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileName": "file_1789978602679_238f731c_test_doc.txt",
+    "fileSize": 186,
+    "contentType": "text/plain",
+    "storagePath": "/app/applet/data/uploads/file_1789979226126_06ce6591_file_1789978602679_238f731c_test_doc.txt",
+    "status": "UPLOADED",
+    "createdAt": "2026-09-21T08:27:06.133Z"
+  },
+  {
+    "fileId": "file_1789981519349_de18f87b",
+    "projectId": "6B4VHqf1Rm98YvdJ6w1U",
+    "userId": "shanmugapriya@qaoncloud.com",
+    "fileName": "Guru99_Demo_Site_Figma_Design_Specification.docx",
+    "fileSize": 1928800,
+    "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "storagePath": "/app/applet/data/uploads/file_1789981519349_de18f87b_Guru99_Demo_Site_Figma_Design_Specification.docx",
+    "status": "UPLOADED",
+    "createdAt": "2026-09-21T09:05:19.381Z"
+  }
+]

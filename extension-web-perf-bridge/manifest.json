@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "AutomatiQA Web Performance Agent Bridge",
+  "version": "1.0.0",
+  "description": "Bridges Google AI Studio Web Performance Testing UI directly to the local AutomatiQA Recording Agent (wss://localhost:9334).",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "webRequest",
+    "scripting"
+  ],
+  "host_permissions": [
+    "wss://localhost:*/*",
+    "https://localhost:*/*",
+    "http://localhost:*/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "AutomatiQA Web Performance Agent Bridge"
+  }
+}
