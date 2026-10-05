@@ -29,3 +29,7 @@ backup-key.json
 
 # Playwright session videos from Record and Play
 recordings/
+
+# Local encrypted LLM provider configuration
+.automatiqa-llm-config.json
+.automatiqa-llm-custom-models.json

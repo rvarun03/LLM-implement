@@ -20,5 +20,16 @@
     "storagePath": "/app/applet/data/uploads/file_1789981519349_de18f87b_Guru99_Demo_Site_Figma_Design_Specification.docx",
     "status": "UPLOADED",
     "createdAt": "2026-09-21T09:05:19.381Z"
+  },
+  {
+    "fileId": "file_1790847278714_ffe3a741",
+    "projectId": "pXse0re0pNUJFeOPJzFa",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileName": "Sample_Flipkart_Ecommerce_BRD.docx",
+    "fileSize": 41815,
+    "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "storagePath": "/home/varun/Desktop/Projects/LLM-final/LLM-implement/data/uploads/file_1790847278714_ffe3a741_Sample_Flipkart_Ecommerce_BRD.docx",
+    "status": "UPLOADED",
+    "createdAt": "2026-10-01T09:34:38.854Z"
   }
 ]

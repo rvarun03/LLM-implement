@@ -29,6 +29,7 @@ import { websitePerformanceRouter } from "./services/websitePerformanceService";
 import { StructuredLocator, toPlaywrightScript, isStableId, SHARED_LOCATOR_ENGINE_SCRIPT } from "./services/structuredLocator";
 import { retrieveRelevantKnowledge, buildCopilotPromptContext, extractNavigationTarget, mapTabToFeatureId } from "./services/qaCopilotKnowledge";
 import { aiJobManager, centralRateController, classifyGeminiError, logAIOperation, AI_CONFIG, getGeminiClient, checkGeminiApiKeyHealth } from "./services/centralGeminiService";
+import { llmProviderService, LLMConfiguration, LLMProvider, PROVIDER_MODELS } from "./services/llmProviderService";
 
 import { execSync } from "child_process";
 import crypto from "crypto";
@@ -667,6 +668,66 @@ async function startServer() {
   const app = express();
   app.use(express.json({ limit: '100mb' }));
   app.use(express.urlencoded({ limit: '100mb', extended: true }));
+
+  // Global provider/model configuration. Keys are encrypted locally and never returned to the browser.
+  const llmConfigPath = path.join(process.cwd(), '.automatiqa-llm-config.json');
+  const llmCustomModelsPath = path.join(process.cwd(), '.automatiqa-llm-custom-models.json');
+  const loadCustomLlmModels = () => {
+    try {
+      const stored = JSON.parse(fs.readFileSync(llmCustomModelsPath, 'utf-8'));
+      for (const provider of ['gemini', 'openai', 'ollama'] as LLMProvider[]) {
+        for (const model of Array.isArray(stored?.[provider]) ? stored[provider] : []) {
+          if (!model?.id || !model?.label) continue;
+          const list = PROVIDER_MODELS[provider];
+          const index = list.findIndex(item => item.id === model.id);
+          if (index >= 0) list[index] = model; else list.push(model);
+        }
+      }
+    } catch {}
+  };
+  const readLlmConfig = (): LLMConfiguration => {
+    try {
+      const stored = JSON.parse(fs.readFileSync(llmConfigPath, 'utf-8'));
+      const key = decryptToken(stored.encryptedApiKey || '');
+      if (stored.provider && stored.model && (stored.provider === 'ollama' || key)) {
+        llmProviderService.configure({ provider: stored.provider as LLMProvider, model: stored.model, apiKey: key, ollamaBaseUrl: stored.ollamaBaseUrl });
+      }
+    } catch {}
+    return llmProviderService.getConfig();
+  };
+  const publicLlmConfig = () => {
+    const config = readLlmConfig(); const key = config.apiKey || '';
+    return { provider: config.provider, model: config.model, hasApiKey: config.provider === 'ollama' || Boolean(key), maskedApiKey: key ? key.slice(0, 4) + '••••' + key.slice(-4) : '', ollamaBaseUrl: config.ollamaBaseUrl || 'http://127.0.0.1:11434' };
+  };
+  loadCustomLlmModels();
+  readLlmConfig();
+  app.get('/api/llm/config', (_req, res) => res.json({ success: true, config: publicLlmConfig(), models: PROVIDER_MODELS }));
+  app.get('/api/llm/receipts', (_req, res) => res.json({ success: true, receipts: llmProviderService.getReceipts() }));
+  app.post('/api/llm/models', (req, res) => {
+    const { provider, id, label, description = '' } = req.body || {};
+    if (!['gemini', 'openai', 'ollama'].includes(provider) || !/^[a-zA-Z0-9._:/-]{1,128}$/.test(String(id || '')) || !String(label || '').trim()) return res.status(400).json({ success: false, error: 'Enter a valid provider, model ID, and display name.' });
+    const list = PROVIDER_MODELS[provider as LLMProvider];
+    const model = { id: String(id).trim(), label: String(label).trim(), description: String(description).trim() || 'Custom model' };
+    const existing = list.findIndex(item => item.id === model.id); if (existing >= 0) list[existing] = model; else list.push(model);
+    try {
+      const stored = JSON.parse(fs.readFileSync(llmCustomModelsPath, 'utf-8'));
+      const custom = Array.isArray(stored?.[provider]) ? stored[provider].filter((item: any) => item?.id !== model.id) : [];
+      custom.push(model);
+      fs.writeFileSync(llmCustomModelsPath, JSON.stringify({ ...(stored || {}), [provider]: custom }), { mode: 0o600 });
+    } catch {
+      fs.writeFileSync(llmCustomModelsPath, JSON.stringify({ [provider]: [model] }), { mode: 0o600 });
+    }
+    res.json({ success: true, model, models: PROVIDER_MODELS });
+  });
+  app.post('/api/llm/config', async (req, res) => {
+    const { provider, model, apiKey, ollamaBaseUrl, validate = true } = req.body || {};
+    if (!['gemini', 'openai', 'ollama'].includes(provider) || !PROVIDER_MODELS[provider as LLMProvider]?.some(item => item.id === model)) return res.status(400).json({ success: false, error: 'Choose a supported provider and model.' });
+    const existing = readLlmConfig(); const resolvedKey = provider === 'ollama' ? '' : (String(apiKey || '').trim() || (existing.provider === provider ? existing.apiKey : ''));
+    if (provider !== 'ollama' && !resolvedKey) return res.status(400).json({ success: false, error: 'An API key is required for the selected provider.' });
+    const next: LLMConfiguration = { provider, model, apiKey: resolvedKey, ollamaBaseUrl: provider === 'ollama' ? String(ollamaBaseUrl || existing.ollamaBaseUrl || 'http://127.0.0.1:11434').trim() : existing.ollamaBaseUrl };
+    try { if (validate) await llmProviderService.validate(next); llmProviderService.configure(next); fs.writeFileSync(llmConfigPath, JSON.stringify({ provider, model, ollamaBaseUrl: next.ollamaBaseUrl || null, encryptedApiKey: encryptToken(resolvedKey) }), { mode: 0o600 }); aiCacheService.clear(); res.json({ success: true, config: publicLlmConfig() }); }
+    catch (error: any) { res.status(400).json({ success: false, error: String(error?.message || 'The provider could not validate this configuration.') }); }
+  });
   // Health check mounted immediately first for zero-latency probe response
   app.get("/api/health", (_req, res) => {
     res.json({ status: "ok" });
@@ -12297,6 +12358,15 @@ async function recordTokenLogServer(params: {
         (geminiService as any).setLastUsageMetadata(null);
       }
 
+      const activeLlmConfig = readLlmConfig();
+      // Cache keys include the selected provider and model: an old model can never satisfy this request.
+      const modelAwareCacheArgs = [...(args || []), { __llmProvider: activeLlmConfig.provider, __llmModel: activeLlmConfig.model }];
+      const modelVerification = (meta?: any) => ({
+        provider: meta?.provider || activeLlmConfig.provider,
+        requestedModel: activeLlmConfig.model,
+        respondedModel: meta?.model || activeLlmConfig.model,
+        verified: !meta?.model || meta.model === activeLlmConfig.model
+      });
       let isCached = false;
       let result: any = null;
       let executionTimeMs = 0;
@@ -12316,7 +12386,7 @@ async function recordTokenLogServer(params: {
       const isUncacheable = nonCacheableFunctions.has(functionName);
 
       if (!bypassCache && !isUncacheable) {
-        const cacheCheck = await aiCacheService.get(functionName, args || []);
+        const cacheCheck = await aiCacheService.get(functionName, modelAwareCacheArgs);
         if (cacheCheck.hit) {
           // If generating flow automation project, verify cached files strictly match requested language and are complete
           let cacheValid = true;
@@ -12355,7 +12425,8 @@ async function recordTokenLogServer(params: {
                 outputTokens: 0,
                 totalTokens: 0,
                 costUsd: 0
-              }
+              },
+              modelVerification: modelVerification()
             });
           }
         }
@@ -12385,7 +12456,8 @@ async function recordTokenLogServer(params: {
           result: job.result,
           cached: true,
           executionTimeMs: 100,
-          tokenUsage: job.tokenUsage || { inputTokens: 0, outputTokens: 0, totalTokens: 0, costUsd: 0 }
+          tokenUsage: job.tokenUsage || { inputTokens: 0, outputTokens: 0, totalTokens: 0, costUsd: 0 },
+          modelVerification: modelVerification()
         });
       }
 
@@ -12401,7 +12473,7 @@ async function recordTokenLogServer(params: {
             return await func(...(args || []));
           });
           executionTimeMs = Date.now() - startTime;
-          await aiCacheService.set(functionName, args || [], executionResult, executionTimeMs);
+          await aiCacheService.set(functionName, modelAwareCacheArgs, executionResult, executionTimeMs);
           return executionResult;
         },
         async (completedResult) => {
@@ -12480,7 +12552,8 @@ async function recordTokenLogServer(params: {
           costUsd: logRecord?.costUsd || 0
         },
         logRecord,
-        plan: planState
+        plan: planState,
+        modelVerification: modelVerification(usageMeta)
       });
     } catch (error: any) {
       console.error(`[Server AI] Failed to execute Gemini function ${functionName}:`, error);

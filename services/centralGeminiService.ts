@@ -16,10 +16,10 @@
  * 10. Structured observability logging without exposing credentials.
  */
 
-import { GoogleGenAI } from "@google/genai";
 import crypto from "crypto";
 import firebaseConfig from "../firebase-applet-config.json";
 import { logger } from "./appLogger";
+import { llmProviderService } from "./llmProviderService";
 
 // ==============================================================================
 // 1. CONFIGURATION & ENVIRONMENT VERIFICATION
@@ -54,37 +54,21 @@ console.log(`[Central Gemini Service] Initialized with:`, {
   MAX_RETRIES: AI_CONFIG.MAX_RETRIES,
 });
 
-// Lazy server-side GoogleGenAI client singleton
-let _genAIClient: GoogleGenAI | null = null;
-
-export function getGeminiClient(): GoogleGenAI {
+// Provider-neutral client facade. The active integration setting is enforced by llmProviderService.
+// It deliberately ignores per-call model arguments so no feature can silently use another model.
+export function getGeminiClient(): any {
   if (typeof window !== "undefined") {
-    throw new Error("[SECURITY CRITICAL] Gemini API client must never be initialized in the browser.");
+    throw new Error("[SECURITY CRITICAL] AI client must never be initialized in the browser.");
   }
-  const apiKey = process.env.GEMINI_API_KEY || process.env.API_KEY;
-  if (!apiKey) {
-    throw new Error("Gemini API key is not configured in server environment. Please set GEMINI_API_KEY.");
-  }
-  if (!_genAIClient) {
-    _genAIClient = new GoogleGenAI({
-      apiKey,
-      httpOptions: {
-        headers: {
-          "User-Agent": "aistudio-build",
-        },
-      },
-    });
-  }
-  return _genAIClient;
+  return { models: { generateContent: (request: any) => llmProviderService.generateContent(request) } };
 }
 
 export function checkGeminiApiKeyHealth(): { configured: boolean; length: number; prefix: string } {
-  const isServer = typeof window === "undefined";
-  const apiKey = (isServer && (process.env.GEMINI_API_KEY || process.env.API_KEY)) || "";
+  const apiKey = typeof window === "undefined" ? llmProviderService.getConfig().apiKey : "";
   return {
-    configured: Boolean(apiKey && apiKey.length > 5 && apiKey !== "dummy-key-to-prevent-constructor-error"),
+    configured: Boolean(apiKey && apiKey.length > 5),
     length: apiKey ? apiKey.length : 0,
-    prefix: apiKey && apiKey.length > 8 ? `${apiKey.slice(0, 4)}...${apiKey.slice(-4)}` : "none",
+    prefix: apiKey && apiKey.length > 8 ? apiKey.slice(0, 4) + "..." + apiKey.slice(-4) : "none",
   };
 }
 

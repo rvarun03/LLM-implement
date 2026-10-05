@@ -1,4 +1,4 @@
-import { GoogleGenAI, Type } from "@google/genai";
+import { Type } from '@google/genai';
 import { AutomationTool, ProgrammingLanguage, StandardRequirementData } from "./types";
 import { formatAcceptanceCriteria, compressImage } from "./services/apiUtils";
 import { addTokenLog, checkAiGenerationPermission, getProjectPlanSync } from "./services/tokenConsumptionService";
@@ -8,70 +8,25 @@ import * as XLSX from "xlsx";
 import { sanitizeJmxScript } from "./utils/jmxSanitizer";
 import { generateMultiFrameworkProject, validateProjectFilesLanguage, ensureCompleteProjectFiles } from "./services/codeGenerators/multiFrameworkScriptGenerator";
 import { formatProjectFiles } from "./services/codeFormatter";
+import { llmProviderService } from "./services/llmProviderService";
 
-// Server-side Gemini API client initialization
+// Provider-neutral server-side AI client. Every generation passes through the active LLM configuration.
 const isBrowser = typeof window !== 'undefined';
-const apiKey = (!isBrowser && (process.env.API_KEY || process.env.GEMINI_API_KEY)) || "";
-
 let ai: any = null;
-if (!isBrowser) {
-  try {
-    ai = new GoogleGenAI({ 
-      apiKey: apiKey || "dummy-key-to-prevent-constructor-error",
-      httpOptions: {
-        headers: {
-          'User-Agent': 'aistudio-build',
-        }
-      }
-    });
-  } catch (initErr) {
-    console.warn("Gemini client server initialization notice:", initErr);
-  }
-}
+if (!isBrowser) ai = { models: { generateContent: (request: any) => llmProviderService.generateContent(request) } };
 
-export interface GeminiUsageMeta {
-  promptTokenCount: number;
-  candidatesTokenCount: number;
-  totalTokenCount: number;
-  model: string;
-}
-
+export interface GeminiUsageMeta { promptTokenCount: number; candidatesTokenCount: number; totalTokenCount: number; model: string; provider?: string; }
 let lastUsageMetadata: GeminiUsageMeta | null = null;
-
-export function getLastUsageMetadata(): GeminiUsageMeta | null {
-  return lastUsageMetadata;
-}
-
-export function setLastUsageMetadata(meta: GeminiUsageMeta | null) {
-  lastUsageMetadata = meta;
-}
-
-// Intercept ai.models.generateContent to configure low latency thinkingLevel and capture actual Gemini API token usage
-if (!isBrowser && ai && ai.models && typeof ai.models.generateContent === 'function') {
+export function getLastUsageMetadata(): GeminiUsageMeta | null { return lastUsageMetadata; }
+export function setLastUsageMetadata(meta: GeminiUsageMeta | null) { lastUsageMetadata = meta; }
+if (!isBrowser && ai?.models?.generateContent) {
   const originalGenerateContent = ai.models.generateContent.bind(ai.models);
   ai.models.generateContent = async (...args: any[]) => {
-    // Minimize thinking budget for near-instant latency across all generation calls
-    const req = args[0];
-    if (req && typeof req === 'object') {
-      if (!req.config) req.config = {};
-      if (!req.config.thinkingConfig) {
-        req.config.thinkingConfig = { thinkingBudget: 0 };
-      }
-    }
     const response = await originalGenerateContent(...args);
-    if (response && response.usageMetadata) {
-      setLastUsageMetadata({
-        promptTokenCount: response.usageMetadata.promptTokenCount || 0,
-        candidatesTokenCount: response.usageMetadata.candidatesTokenCount || 0,
-        totalTokenCount: response.usageMetadata.totalTokenCount || ((response.usageMetadata.promptTokenCount || 0) + (response.usageMetadata.candidatesTokenCount || 0)),
-        model: 'Gemini 3.8 Flash'
-      });
-    }
+    if (response?.usageMetadata) setLastUsageMetadata({ promptTokenCount: response.usageMetadata.promptTokenCount || 0, candidatesTokenCount: response.usageMetadata.candidatesTokenCount || 0, totalTokenCount: response.usageMetadata.totalTokenCount || 0, model: response.model || llmProviderService.getConfig().model, provider: response.provider || llmProviderService.getConfig().provider });
     return response;
   };
 }
-
-// Primary model definitions using gemini-3.8-flash
 const BASIC_MODEL = 'gemini-3.8-flash';
 const COMPLEX_MODEL = 'gemini-3.8-flash';
 export const DEFAULT_MODEL = 'gemini-3.8-flash';

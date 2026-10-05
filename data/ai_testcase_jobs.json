@@ -217,5 +217,23 @@
     "stage": "Analyzing document: 0/1 sections",
     "createdAt": "2026-09-21T10:25:40.099Z",
     "updatedAt": "2026-09-21T10:25:40.379Z"
+  },
+  {
+    "jobId": "job_1790847300660_cc1d82f1",
+    "projectId": "pXse0re0pNUJFeOPJzFa",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileId": "file_1790847278714_ffe3a741",
+    "fileName": "Sample_Flipkart_Ecommerce_BRD.docx",
+    "feature": "AI_TEST_CASES",
+    "status": "FAILED",
+    "totalChunks": 1,
+    "completedChunks": 0,
+    "failedChunks": 1,
+    "idempotencyKey": "job_pXse0re0pNUJFeOPJzFa_file_1790847278714_ffe3a741",
+    "creditDeducted": false,
+    "stage": "Analyzing document: 0/1 sections",
+    "createdAt": "2026-10-01T09:35:00.660Z",
+    "updatedAt": "2026-10-01T09:38:43.746Z",
+    "errorMessage": "Chunk 1/1 processing failed: Ollama did not respond within 90 seconds. Check that qwen3:8b fits in available RAM/VRAM, or use a smaller model such as llama3.2:latest."
   }
 ]

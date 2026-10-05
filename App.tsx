@@ -84,6 +84,7 @@ import { GithubSettings } from './components/GithubSettings';
 import { SlackSettings } from './components/SlackSettings';
 import { AICacheSettings } from './components/AICacheSettings';
 import { BackupSettings } from './components/BackupSettings';
+import { LLMSettings } from './components/LLMSettings';
 import { AICacheNotification } from './components/AICacheNotification';
 import { QACopilot } from './components/QACopilot';
 import { NotificationBell } from './components/NotificationBell';
@@ -104,7 +105,7 @@ import { loadAllProjectFoldersAndStories } from './services/folderPersistenceSer
 import { toast as sonnerToast } from 'sonner';
 import { logger } from './services/appLogger';
 
-type ActiveTab = 'dashboard' | 'projects' | 'rag' | 'ai_user_generator' | 'scenarios' | 'cases' | 'manual' | 'execution' | 'execution_manual_cases' | 'execution_scripts' | 'execution_api' | 'execution_performance' | 'scripts' | 'record_play' | 'mobile_testing' | 'api' | 'performance' | 'web_performance' | 'functional_performance' | 'jmeter_performance' | 'ui_testing' | 'reports' | 'token_consumption' | 'user_management' | 'settings_jira' | 'settings_github' | 'settings_slack' | 'settings_cache' | 'settings_credits' | 'settings_backup';
+type ActiveTab = 'dashboard' | 'projects' | 'rag' | 'ai_user_generator' | 'scenarios' | 'cases' | 'manual' | 'execution' | 'execution_manual_cases' | 'execution_scripts' | 'execution_api' | 'execution_performance' | 'scripts' | 'record_play' | 'mobile_testing' | 'api' | 'performance' | 'web_performance' | 'functional_performance' | 'jmeter_performance' | 'ui_testing' | 'reports' | 'token_consumption' | 'user_management' | 'settings_llm' | 'settings_jira' | 'settings_github' | 'settings_slack' | 'settings_cache' | 'settings_credits' | 'settings_backup';
 
 const IDLE_TIMEOUT_MS = 30 * 60 * 1000; // 30 Minutes
 
@@ -245,7 +246,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     logger.info('Navigation', `Active feature tab changed to: ${activeTab}`, { activeTab }, 'TabSwitch', user?.email, selectedProjectId || undefined);
-    if (['settings_jira', 'settings_github', 'settings_slack', 'settings_cache', 'settings_credits', 'settings_backup'].includes(activeTab)) {
+    if (['settings_llm', 'settings_jira', 'settings_github', 'settings_slack', 'settings_cache', 'settings_credits', 'settings_backup'].includes(activeTab)) {
       setIsSettingsExpanded(true);
     }
   }, [activeTab, user?.email, selectedProjectId]);
@@ -2579,6 +2580,7 @@ const App: React.FC = () => {
           onClearInitialFolder={() => setScriptInitialFolder(null)}
         />
       );
+      case 'settings_llm': return <LLMSettings />;
       case 'settings_jira': return <JiraSettings activeProject={activeProject} onUpdateProject={updateProject} />;
       case 'settings_github': return <GithubSettings activeProject={activeProject} onUpdateProject={updateProject} />;
       case 'settings_slack': return <SlackSettings activeProject={activeProject} onUpdateProject={updateProject} />;
@@ -2620,6 +2622,7 @@ const App: React.FC = () => {
 
   const getPageTitle = () => {
     if (activeTab === 'execution') return 'Execution Hub';
+    if (activeTab === 'settings_llm') return 'LLM Provider & Model Settings';
     if (activeTab === 'settings_jira') return 'Jira Integration Settings';
     if (activeTab === 'settings_github') return 'GitHub Integration Settings';
     if (activeTab === 'settings_slack') return 'Slack Integration Settings';
@@ -2785,6 +2788,7 @@ const App: React.FC = () => {
             <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isSettingsExpanded ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0'}`}>
               <div className="ml-5 pl-4 border-l border-slate-800 space-y-1">
                 {[
+                  { id: 'settings_llm', label: 'LLM Model Control', icon: <Zap size={16} className="text-cyan-300" /> },
                   { id: 'settings_jira', label: 'Jira Integration', icon: <Sparkles size={16} /> },
                   { id: 'settings_github', label: 'GitHub Integration', icon: <Github size={16} /> },
                   { id: 'settings_slack', label: 'Slack Integration', icon: <Slack size={16} /> },
