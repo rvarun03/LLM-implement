@@ -60,6 +60,13 @@ export function formatGeminiError(error: any): string {
   rawMsg = rawMsg.replace(/^Failed to execute Gemini function \w+:?\s*/i, '');
   rawMsg = rawMsg.replace(/^Error:\s*/i, '').trim();
 
+  if (rawMsg.includes('OLLAMA_TIMEOUT_GEMINI_FALLBACK_NOT_CONFIGURED')) {
+    return 'Ollama timed out and Gemini 2.5 fallback is not configured. Save a Gemini API key in LLM Model Control → Gemini timeout fallback.';
+  }
+  if (rawMsg.includes('OLLAMA_TIMEOUT_GEMINI_FALLBACK_FAILED')) {
+    return rawMsg.replace('OLLAMA_TIMEOUT_GEMINI_FALLBACK_FAILED:', '').trim();
+  }
+
   if (rawMsg.includes('Failed to fetch') || rawMsg.includes('NetworkError') || rawMsg.includes('fetch failed')) {
     return "Network connection issue or request payload too large. Please retry with a smaller image or check your connection.";
   }
@@ -429,7 +436,9 @@ async function clientProxy(functionName: string, args: any[]): Promise<any> {
       functionName === 'correctUIIssues' ||
       functionName === 'correctUIComparisonDiscrepancies'
     );
-    const timeoutDuration = isHeavyTask ? 180000 : 120000;
+    // Ollama is allowed 240s before the server retries Gemini 2.5 Flash.
+    // The browser must wait beyond that combined path instead of aborting early.
+    const timeoutDuration = isHeavyTask ? 300000 : 120000;
     const maxAttempts = 2;
     let lastError: any = null;
 
@@ -6507,6 +6516,7 @@ export const performUITesting = async (
       }
       throw new Error((res && res.error) || 'Invalid response from AI service');
     } catch (err: any) {
+      if (String(err?.message || err).includes('OLLAMA_TIMEOUT_GEMINI_FALLBACK_')) throw err;
       console.warn('[geminiService] performUITesting clientProxy failed, switching to resilient fallback UI analysis:', err?.message || err);
       return generateFallbackUIAnalysisReport({
         screenshots,
@@ -6771,6 +6781,7 @@ If no issues are found on a page, state "**Page Status: MATCHED - PASSED** - No 
       contents: parts,
     }));
   } catch (apiErr: any) {
+    if (String(apiErr?.message || apiErr).includes('OLLAMA_TIMEOUT_GEMINI_FALLBACK_')) throw apiErr;
     console.warn("[geminiService] performUITesting Gemini API call failed or rate-limited. Generating comprehensive resilient UI audit report:", apiErr?.message || apiErr);
     return generateFallbackUIAnalysisReport({
       screenshots,
@@ -8550,7 +8561,7 @@ export const generateSyntheticUsers = async (
  */
 export function generateFallbackUserStories(docName?: string, docContent?: string, extraContext?: string): any[] {
   const cleanDocName = (docName || '').replace(/\.[a-zA-Z0-9]+$/, '').replace(/[_-]+/g, ' ').trim();
-  const rawText = [docContent, extraContext].filter(Boolean).join('\n\n').trim();
+  const rawText = [docContent, extraContext].filter(Boolean).join('\n\n').trim() || cleanDocName || 'Requirement Input';
 
   if (!rawText) {
     const title = cleanDocName || 'Requirement Input';
@@ -8630,7 +8641,27 @@ export function generateFallbackUserStories(docName?: string, docContent?: strin
     });
   });
 
-  return stories;
+  // Keep timeout fallbacks useful for review: short inputs are expanded to five
+  // concise, requirement-based stories, while the final slice keeps eight max.
+  const requirementTitle = (stories[0]?.summary || cleanDocName || 'Requirement Input').slice(0, 70);
+  const fallbackCoverage = [
+    ['Validate ' + requirementTitle, 'validate mandatory input and business rules'],
+    ['Handle ' + requirementTitle + ' errors', 'receive clear feedback when an action cannot be completed'],
+    ['Confirm ' + requirementTitle + ' completion', 'see a clear outcome after a successful action'],
+    ['Review ' + requirementTitle + ' status', 'review the current state and next required action'],
+  ];
+  for (const [summary, goal] of fallbackCoverage) {
+    if (stories.length >= 5) break;
+    stories.push({
+      summary,
+      description: `As a user, I want to ${goal}, so that I can complete ${requirementTitle} reliably.`,
+      acceptanceCriteria: formatAcceptanceCriteria(
+        `Given the user is working with ${requirementTitle}\nWhen the relevant action is performed\nThen the system provides an accurate outcome\nAnd the user can continue the workflow`
+      )
+    });
+  }
+
+  return stories.slice(0, 8);
 }
 
 /**
@@ -8638,6 +8669,10 @@ export function generateFallbackUserStories(docName?: string, docContent?: strin
  * markdown wrappers, objects with various wrapper keys ({ userStories, stories, etc. }),
  * single objects, and graceful fallbacks.
  */
+// This is a hard application boundary. A model response or stale cache must
+// never be allowed to create an unbounded number of persisted stories.
+const MAX_GENERATED_USER_STORIES = 8;
+
 export function parseAndNormalizeUserStories(
   rawText: any,
   docName?: string,
@@ -8713,7 +8748,7 @@ export function parseAndNormalizeUserStories(
   }
 
   if (Array.isArray(candidateArray) && candidateArray.length > 0) {
-    const formatted = candidateArray.map((item: any, idx: number) => {
+    const formatted = candidateArray.slice(0, MAX_GENERATED_USER_STORIES).map((item: any, idx: number) => {
       const summary = item.summary || item.title || item.name || `User Story ${idx + 1}`;
       const description = item.description || item.userStory || item.story || summary;
       const acceptanceCriteria = formatAcceptanceCriteria(
@@ -8838,6 +8873,7 @@ CRITICAL MANDATES FOR USER STORY GENERATION:
 6. TRACEABILITY & QUALITY: Ensure every generated User Story and its Acceptance Criteria can be directly traced to specific text/instructions in the input.
 7. DYNAMIC COUNT & MULTIPLE STORIES DIRECTIVE:
    - When the uploaded BRD document, screenshots, or user instructions cover multiple features, sections, UI screens, form fields, or user flows, you MUST generate MULTIPLE distinct User Stories.
+   - Return 2 to 4 concise user stories only. Never return more than 8 stories.
    - Every generated story must contain a specific requirement title (summary), a complete formal description ("As a [type of user], I want [goal] so that [benefit]"), and detailed Given/When/Then acceptance criteria.
 
 USER INPUT & REFINE INSTRUCTIONS (TOP PRIORITY):
@@ -8923,12 +8959,14 @@ Return the generated user stories as a JSON array of objects with the exact sche
   }
   contents.push({ text: prompt });
 
+  const isOllamaProvider = llmProviderService.getConfig().provider === 'ollama';
   try {
     const res = await withRetry((model) => ai.models.generateContent({
       model,
       contents: contents,
       config: {
         responseMimeType: "application/json",
+        maxOutputTokens: isOllamaProvider ? 512 : undefined,
         responseSchema: {
           type: Type.ARRAY,
           items: {
@@ -8945,8 +8983,7 @@ Return the generated user stories as a JSON array of objects with the exact sche
     }));
     return parseAndNormalizeUserStories(res.text, fileName, extractedText, additionalContext);
   } catch (err: any) {
-    console.error("[Gemini API] generateUserStoriesFromDoc error:", err);
-    // Return resilient contextual user stories instead of throwing
+    console.warn("[AI] user-story generation failed; using the capped fallback:", err);
     return generateFallbackUserStories(fileName, extractedText, additionalContext);
   }
 };
@@ -10097,5 +10134,3 @@ Focus on stability and avoiding dynamic attributes.`;
     };
   }
 };
-
-

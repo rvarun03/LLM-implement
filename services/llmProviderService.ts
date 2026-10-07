@@ -25,6 +25,7 @@ export interface ModelExecutionReceipt {
 
 export const PROVIDER_MODELS: Record<LLMProvider, Array<{ id: string; label: string; description: string }>> = {
   gemini: [
+    { id: 'gemini-2.5-flash', label: 'Gemini 2.5 Flash', description: 'Used only after a timed-out Ollama request' },
     { id: 'gemini-3.8-flash', label: 'Gemini 3.8 Flash', description: 'Recommended: fast, long-context multimodal reasoning' },
     { id: 'gemini-3.5-flash-lite', label: 'Gemini 3.5 Flash-Lite', description: 'Fastest current general-purpose option' },
     { id: 'gemini-3.1-pro-preview', label: 'Gemini 3.1 Pro Preview', description: 'Advanced reasoning model recommended by the Gemini API for new users' },
@@ -62,11 +63,19 @@ let activeConfig: LLMConfiguration = {
   ollamaBaseUrl: process.env.OLLAMA_BASE_URL || 'http://127.0.0.1:11434',
 };
 
+// This configuration is not an active-provider switch. It is read only when
+// the active provider is Ollama and its generation request times out.
+let geminiTimeoutFallback: LLMConfiguration = {
+  provider: 'gemini',
+  model: 'gemini-2.5-flash',
+  apiKey: process.env.GEMINI_API_KEY || process.env.API_KEY || '',
+};
+
 // Stores evidence, not prompts or output. The hash chain makes in-memory receipt
 // changes detectable while keeping customer data out of this audit view.
 const MAX_RECEIPTS = 100;
 const OLLAMA_CONNECT_TIMEOUT_MS = 8_000;
-const OLLAMA_GENERATION_TIMEOUT_MS = 90_000;
+const OLLAMA_GENERATION_TIMEOUT_MS = 240_000;
 let receipts: ModelExecutionReceipt[] = [];
 let previousReceiptHash = 'GENESIS';
 const normalizeModel = (model: string) => model.trim().replace(/^models\//, '');
@@ -117,6 +126,14 @@ export const llmProviderService = {
     activeConfig = { ...config };
   },
 
+  configureGeminiTimeoutFallback(apiKey: string) {
+    geminiTimeoutFallback = { provider: 'gemini', model: 'gemini-2.5-flash', apiKey };
+  },
+
+  getGeminiTimeoutFallback() {
+    return { enabled: Boolean(geminiTimeoutFallback.apiKey?.trim()), model: geminiTimeoutFallback.model };
+  },
+
   getConfig(): LLMConfiguration {
     return { ...activeConfig };
   },
@@ -127,7 +144,7 @@ export const llmProviderService = {
 
   async validate(config: LLMConfiguration): Promise<void> {
     if (config.provider !== 'ollama' && !config.apiKey?.trim()) throw new Error('An API key is required.');
-    await this.generateContent({
+    await this.generateContentDirect({
       model: config.model,
       contents: 'Reply with the single word OK.',
       // Qwen models may spend a short token budget on hidden reasoning before
@@ -137,6 +154,31 @@ export const llmProviderService = {
   },
 
   async generateContent(request: any, override?: LLMConfiguration): Promise<any> {
+    const config = override || activeConfig;
+    try {
+      return await this.generateContentDirect(request, config);
+    } catch (error: any) {
+      const message = String(error?.message || '');
+      const ollamaTimedOut = config.provider === 'ollama' && /ollama did not respond within|timeout|timed out/i.test(message);
+      if (ollamaTimedOut && !geminiTimeoutFallback.apiKey?.trim()) {
+        throw new Error('OLLAMA_TIMEOUT_GEMINI_FALLBACK_NOT_CONFIGURED: Ollama timed out. Save a Gemini API key under Gemini timeout fallback to retry with Gemini 2.5 Flash.');
+      }
+      if (ollamaTimedOut) {
+        console.warn(`[LLM] Ollama ${config.model} timed out; retrying once with Gemini 2.5 Flash.`);
+        try {
+          const response = await this.generateContentDirect(request, geminiTimeoutFallback);
+          response.fallbackProvider = 'gemini';
+          response.fallbackReason = 'ollama_timeout';
+          return response;
+        } catch (fallbackError: any) {
+          throw new Error(`OLLAMA_TIMEOUT_GEMINI_FALLBACK_FAILED: Gemini 2.5 Flash could not complete the retry. ${String(fallbackError?.message || fallbackError)}`);
+        }
+      }
+      throw error;
+    }
+  },
+
+  async generateContentDirect(request: any, override?: LLMConfiguration): Promise<any> {
     const config = override || activeConfig;
     if (config.provider !== 'ollama' && !config.apiKey) throw new Error(`No ${config.provider === 'gemini' ? 'Google Gemini' : 'OpenAI'} API key is configured.`);
 

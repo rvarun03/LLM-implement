@@ -566,6 +566,10 @@ const AIGeneratorUser: React.FC<AIGeneratorUserProps> = ({ project, user, onUpda
           toast.error("Credit not available: Credit limit reached.");
           return;
         }
+        // Browser timeouts can happen before the server returns its fallback.
+        // Produce the same 5–8 story fallback immediately for the user.
+        rawUserStories = generateFallbackUserStories(selectedFile?.name, extractedDocText, additionalContext);
+        toast.info('AI request timed out. Generated fallback user stories from your requirements.');
       }
 
       // Resilient normalization of rawUserStories into an array
@@ -599,13 +603,15 @@ const AIGeneratorUser: React.FC<AIGeneratorUserProps> = ({ project, user, onUpda
         } catch (e) {}
       }
 
-      // If storiesToProcess is empty, generate contextual requirement-derived stories
+      // Never replace a failed/invalid AI result with document-line fallbacks.
+      // Those fallbacks can create one story per line of a large BRD.
       if (!Array.isArray(storiesToProcess) || storiesToProcess.length === 0) {
-        storiesToProcess = generateFallbackUserStories(
-          selectedFile?.name,
-          extractedDocText,
-          additionalContext
-        );
+        throw new Error('AI user-story generation returned no valid stories. No stories were created.');
+      }
+      // Defensive final boundary for cached or non-compliant model responses.
+      if (storiesToProcess.length > 8) {
+        console.warn(`[AIGeneratorUser] Ignoring ${storiesToProcess.length - 8} excess user stories.`);
+        storiesToProcess = storiesToProcess.slice(0, 8);
       }
 
       if (Array.isArray(storiesToProcess) && storiesToProcess.length > 0) {

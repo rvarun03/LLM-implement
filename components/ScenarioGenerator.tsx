@@ -41,7 +41,7 @@ import {
   Copy,
   Paperclip
 } from 'lucide-react';
-import { generateScenariosFromInput } from '../geminiService';
+import { generateScenariosFromInput, generateFallbackScenarios } from '../geminiService';
 import { recordFeatureConsumption, checkAiGenerationPermission, getProjectCreditSummary } from '../services/tokenConsumptionService';
 import { generateUniqueFolderId } from '../utils/idGenerator';
 import { deductExportCredits, canPerformAction, deductProjectCredits } from '../services/creditService';
@@ -1149,6 +1149,17 @@ interface LastInputDetails {
       }
 
       // Generated scenarios are automatically recorded into Token Consumption via the AI service call
+
+      // An empty async/local-model response must not result in "0 generated".
+      if (newScenarios.length === 0) {
+        const fallbackSource = finalInput || description || docContent || aiInstructions || 'Validate the supplied requirements.';
+        const fallbackStory = extractedStories[0];
+        newScenarios = generateFallbackScenarios(fallbackSource, { aiInstructions, userStoryNumber: fallbackStory?.storyNumber || '', userStorySummary: fallbackStory?.summary || '' }).slice(0, 8).map((s: any, idx: number) => ({
+          id: Math.random().toString(36).substr(2, 9), scenarioId: s.scenarioId || `TS-FALLBACK-${String(idx + 1).padStart(2, '0')}`, title: s.title || `Fallback Scenario ${idx + 1}`,
+          type: s.type || 'Functional', scenarioCategory: s.scenarioCategory || 'Positive', description: s.description || 'Requirement-derived fallback scenario.', expectedResults: s.expectedResults || 'The requirement is handled correctly.', moduleName: s.moduleName || fallbackStory?.summary || 'Fallback Requirements', isApproved: false, testCases: [], createdAt: new Date().toISOString(), saved: false, folderId: '', priority: s.priority || 'Medium', tags: s.tags || ['fallback'], userStoryNumber: s.userStoryNumber || fallbackStory?.storyNumber || '', userStorySummary: s.userStorySummary || fallbackStory?.summary || '', userStoryId: s.userStoryNumber || fallbackStory?.storyNumber || ''
+        } as TestScenario));
+        toast.info(`AI returned no scenarios. Generated ${newScenarios.length} fallback scenarios.`);
+      }
 
 
       // Create a single consolidated input source item containing all input documents and screenshots together

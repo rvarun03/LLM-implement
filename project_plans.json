@@ -690,11 +690,11 @@
   {
     "projectId": "BRwFSJwc7DEpyVazsgha",
     "projectName": "Neeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeew        Project",
-    "planType": "Trial",
-    "creditPlan": "trial",
-    "allocatedCredits": 100,
-    "totalCredits": 100,
-    "validityDays": 7,
+    "planType": "Paid",
+    "creditPlan": "paid",
+    "allocatedCredits": 1000,
+    "totalCredits": 1000,
+    "validityDays": 30,
     "cycleStartTimestamp": 1791095533541,
     "cycleStartDateFormatted": "04-Oct-2026 12:02 PM IST",
     "subscriptionStartDate": 1791095533541,
@@ -704,7 +704,7 @@
     "status": "active",
     "subscriptionStatus": "active",
     "subscriptionRequestStatus": "none",
-    "consumedCredits": 5,
-    "remainingCredits": 95
+    "consumedCredits": 305,
+    "remainingCredits": 695
   }
 ]

@@ -235,5 +235,40 @@
     "createdAt": "2026-10-01T09:35:00.660Z",
     "updatedAt": "2026-10-01T09:38:43.746Z",
     "errorMessage": "Chunk 1/1 processing failed: Ollama did not respond within 90 seconds. Check that qwen3:8b fits in available RAM/VRAM, or use a smaller model such as llama3.2:latest."
+  },
+  {
+    "jobId": "job_1791265169569_71c6451b",
+    "projectId": "BRwFSJwc7DEpyVazsgha",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileId": "file_1791265153418_4018f873",
+    "fileName": "login_test_case_prompt.docx",
+    "feature": "AI_TEST_CASES",
+    "status": "FAILED",
+    "totalChunks": 1,
+    "completedChunks": 0,
+    "failedChunks": 1,
+    "idempotencyKey": "job_BRwFSJwc7DEpyVazsgha_file_1791265153418_4018f873",
+    "creditDeducted": false,
+    "stage": "Analyzing document: 0/1 sections",
+    "createdAt": "2026-10-06T05:39:29.569Z",
+    "updatedAt": "2026-10-06T05:40:09.983Z",
+    "errorMessage": "Chunk 1/1 processing failed: Could not reach Ollama at http://127.0.0.1:11434. Start Ollama, pull qwen3:4b, and ensure this server can access it."
+  },
+  {
+    "jobId": "job_1791340894885_7e65ddce",
+    "projectId": "BRwFSJwc7DEpyVazsgha",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileId": "file_1791340873464_fe10ec00",
+    "fileName": "Online_Banking_BRD_QA_Practice.docx",
+    "feature": "AI_TEST_CASES",
+    "status": "PROCESSING",
+    "totalChunks": 2,
+    "completedChunks": 0,
+    "failedChunks": 0,
+    "idempotencyKey": "job_BRwFSJwc7DEpyVazsgha_file_1791340873464_fe10ec00",
+    "creditDeducted": false,
+    "stage": "Analyzing document: 0/2 sections",
+    "createdAt": "2026-10-07T02:41:34.885Z",
+    "updatedAt": "2026-10-07T02:41:52.421Z"
   }
 ]

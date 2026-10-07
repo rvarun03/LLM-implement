@@ -689,6 +689,10 @@ async function startServer() {
     try {
       const stored = JSON.parse(fs.readFileSync(llmConfigPath, 'utf-8'));
       const key = decryptToken(stored.encryptedApiKey || '');
+      // Preserve the Gemini key separately so changing the active provider to
+      // Ollama never removes the timeout-only Gemini fallback.
+      const geminiFallbackKey = decryptToken(stored.encryptedGeminiFallbackApiKey || '') || (stored.provider === 'gemini' ? key : '') || process.env.GEMINI_API_KEY || process.env.API_KEY || '';
+      llmProviderService.configureGeminiTimeoutFallback(geminiFallbackKey);
       if (stored.provider && stored.model && (stored.provider === 'ollama' || key)) {
         llmProviderService.configure({ provider: stored.provider as LLMProvider, model: stored.model, apiKey: key, ollamaBaseUrl: stored.ollamaBaseUrl });
       }
@@ -697,7 +701,8 @@ async function startServer() {
   };
   const publicLlmConfig = () => {
     const config = readLlmConfig(); const key = config.apiKey || '';
-    return { provider: config.provider, model: config.model, hasApiKey: config.provider === 'ollama' || Boolean(key), maskedApiKey: key ? key.slice(0, 4) + '••••' + key.slice(-4) : '', ollamaBaseUrl: config.ollamaBaseUrl || 'http://127.0.0.1:11434' };
+    const fallback = llmProviderService.getGeminiTimeoutFallback();
+    return { provider: config.provider, model: config.model, hasApiKey: config.provider === 'ollama' || Boolean(key), maskedApiKey: key ? key.slice(0, 4) + '••••' + key.slice(-4) : '', ollamaBaseUrl: config.ollamaBaseUrl || 'http://127.0.0.1:11434', geminiTimeoutFallbackEnabled: fallback.enabled, geminiTimeoutFallbackModel: fallback.model };
   };
   loadCustomLlmModels();
   readLlmConfig();
@@ -720,12 +725,15 @@ async function startServer() {
     res.json({ success: true, model, models: PROVIDER_MODELS });
   });
   app.post('/api/llm/config', async (req, res) => {
-    const { provider, model, apiKey, ollamaBaseUrl, validate = true } = req.body || {};
+    const { provider, model, apiKey, ollamaBaseUrl, geminiFallbackApiKey, validate = true } = req.body || {};
     if (!['gemini', 'openai', 'ollama'].includes(provider) || !PROVIDER_MODELS[provider as LLMProvider]?.some(item => item.id === model)) return res.status(400).json({ success: false, error: 'Choose a supported provider and model.' });
     const existing = readLlmConfig(); const resolvedKey = provider === 'ollama' ? '' : (String(apiKey || '').trim() || (existing.provider === provider ? existing.apiKey : ''));
     if (provider !== 'ollama' && !resolvedKey) return res.status(400).json({ success: false, error: 'An API key is required for the selected provider.' });
+    let savedGeminiFallbackKey = '';
+    try { savedGeminiFallbackKey = decryptToken(JSON.parse(fs.readFileSync(llmConfigPath, 'utf-8')).encryptedGeminiFallbackApiKey || ''); } catch {}
+    const fallbackKey = String(geminiFallbackApiKey || '').trim() || (provider === 'gemini' ? resolvedKey : '') || savedGeminiFallbackKey || process.env.GEMINI_API_KEY || process.env.API_KEY || '';
     const next: LLMConfiguration = { provider, model, apiKey: resolvedKey, ollamaBaseUrl: provider === 'ollama' ? String(ollamaBaseUrl || existing.ollamaBaseUrl || 'http://127.0.0.1:11434').trim() : existing.ollamaBaseUrl };
-    try { if (validate) await llmProviderService.validate(next); llmProviderService.configure(next); fs.writeFileSync(llmConfigPath, JSON.stringify({ provider, model, ollamaBaseUrl: next.ollamaBaseUrl || null, encryptedApiKey: encryptToken(resolvedKey) }), { mode: 0o600 }); aiCacheService.clear(); res.json({ success: true, config: publicLlmConfig() }); }
+    try { if (validate) await llmProviderService.validate(next); llmProviderService.configure(next); llmProviderService.configureGeminiTimeoutFallback(fallbackKey); fs.writeFileSync(llmConfigPath, JSON.stringify({ provider, model, ollamaBaseUrl: next.ollamaBaseUrl || null, encryptedApiKey: encryptToken(resolvedKey), encryptedGeminiFallbackApiKey: encryptToken(fallbackKey) }), { mode: 0o600 }); aiCacheService.clear(); res.json({ success: true, config: publicLlmConfig() }); }
     catch (error: any) { res.status(400).json({ success: false, error: String(error?.message || 'The provider could not validate this configuration.') }); }
   });
   // Health check mounted immediately first for zero-latency probe response
