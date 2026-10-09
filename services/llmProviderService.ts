@@ -48,6 +48,7 @@ export const PROVIDER_MODELS: Record<LLMProvider, Array<{ id: string; label: str
     { id: 'llama3.2-vision:11b', label: 'Llama 3.2 Vision 11B', description: 'Use for screenshot/image analysis on a GPU-hosted Ollama server' },
     { id: 'mistral:latest', label: 'Mistral 7B', description: 'Installed: general-purpose local text model' },
     { id: 'gemma:2b', label: 'Gemma 2B', description: 'Installed: lightweight local text model' },
+    { id: 'gemma3n:e2b', label: 'Gemma 3n E2B', description: 'Lightweight multimodal Ollama model' },
     { id: 'gemma3:4b', label: 'Gemma 3 4B Vision', description: 'Vision + text; recommended lightweight local image model (download required)' },
     { id: 'deepseek-r1:1.5b', label: 'DeepSeek R1 1.5B', description: 'Fast local reasoning model; text-only (download required)' },
     { id: 'deepseek-r1:7b', label: 'DeepSeek R1 7B', description: 'Stronger local reasoning model; text-only and slower on CPU (download required)' },
