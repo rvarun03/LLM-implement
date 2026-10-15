@@ -8748,6 +8748,17 @@ export function parseAndNormalizeUserStories(
   }
 
   if (Array.isArray(candidateArray) && candidateArray.length > 0) {
+    // Small local models can return valid JSON that stops after one item or
+    // omits criteria. Do not expose an incomplete response as a real result.
+    const hasCompleteStory = (item: any) => {
+      const description = String(item?.description || item?.userStory || item?.story || '').trim();
+      const criteria = String(item?.acceptanceCriteria || item?.acceptance_criteria || item?.criteria || '').trim();
+      return description.length >= 20 && criteria.length >= 20 && /\b(given|when|then)\b/i.test(criteria);
+    };
+    if (candidateArray.length < 2 || !candidateArray.every(hasCompleteStory)) {
+      console.warn('[AI] Incomplete user-story response received; using requirement-based fallback stories.');
+      return generateFallbackUserStories(docName, docContent, extraContext);
+    }
     const formatted = candidateArray.slice(0, MAX_GENERATED_USER_STORIES).map((item: any, idx: number) => {
       const summary = item.summary || item.title || item.name || `User Story ${idx + 1}`;
       const description = item.description || item.userStory || item.story || summary;
@@ -8966,7 +8977,7 @@ Return the generated user stories as a JSON array of objects with the exact sche
       contents: contents,
       config: {
         responseMimeType: "application/json",
-        maxOutputTokens: isOllamaProvider ? 512 : undefined,
+        maxOutputTokens: isOllamaProvider ? 768 : undefined,
         responseSchema: {
           type: Type.ARRAY,
           items: {

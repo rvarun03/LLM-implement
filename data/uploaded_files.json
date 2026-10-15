@@ -53,5 +53,16 @@
     "storagePath": "/home/varun/Desktop/Projects/LLM-final/LLM-implement/data/uploads/file_1791340873464_fe10ec00_Online_Banking_BRD_QA_Practice.docx",
     "status": "UPLOADED",
     "createdAt": "2026-10-07T02:41:13.613Z"
+  },
+  {
+    "fileId": "file_1791884649538_c53b978e",
+    "projectId": "BRwFSJwc7DEpyVazsgha",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileName": "Ganesh Chaturthi Campaign PRD.docx",
+    "fileSize": 569935,
+    "contentType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "storagePath": "/home/varun/Desktop/Projects/LLM-final/LLM-implement/data/uploads/file_1791884649538_c53b978e_Ganesh_Chaturthi_Campaign_PRD.docx",
+    "status": "UPLOADED",
+    "createdAt": "2026-10-13T09:44:09.592Z"
   }
 ]

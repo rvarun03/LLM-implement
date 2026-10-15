@@ -270,5 +270,106 @@
     "stage": "Analyzing document: 0/2 sections",
     "createdAt": "2026-10-07T02:41:34.885Z",
     "updatedAt": "2026-10-07T02:41:52.421Z"
+  },
+  {
+    "jobId": "job_1791884696631_1dbdd753",
+    "projectId": "BRwFSJwc7DEpyVazsgha",
+    "userId": "jagathesan@qaoncloud.com",
+    "fileId": "file_1791884649538_c53b978e",
+    "fileName": "Ganesh Chaturthi Campaign PRD.docx",
+    "feature": "AI_TEST_CASES",
+    "status": "COMPLETED",
+    "totalChunks": 1,
+    "completedChunks": 1,
+    "failedChunks": 0,
+    "idempotencyKey": "job_BRwFSJwc7DEpyVazsgha_file_1791884649538_c53b978e",
+    "creditDeducted": true,
+    "stage": "Test cases generated successfully.",
+    "createdAt": "2026-10-13T09:44:56.631Z",
+    "updatedAt": "2026-10-13T09:49:06.735Z",
+    "mergedScenarios": [
+      {
+        "id": "sc_1791884918943_1_2g5q7",
+        "scenarioId": "TS-001",
+        "title": "Eligible user submits a wish successfully",
+        "type": "Functional",
+        "scenarioCategory": "Positive",
+        "description": "Verify that an eligible user can successfully submit a wish within the specified timeframe and receive the correct confirmation.",
+        "expectedResults": "User is redirected to the 'Your Wish Is Sealed' screen, receives a confirmation message, and the dashboard banner changes to 'Your wish is sealed' for the duration of the campaign.",
+        "moduleName": "General Requirements",
+        "isApproved": false,
+        "testCases": [
+          {
+            "id": "tc_1791884918943_1_0",
+            "testCaseId": "TC-1-01",
+            "title": "Successful Wish Submission - Valid Input",
+            "preconditions": "User is an eligible active user in the Capital Now app.",
+            "steps": [
+              "1. Navigate to the Capital Now app.",
+              "2. Access the Ganesh Chaturthi campaign banner.",
+              "3. Click on the 'Write Your Wish' button.",
+              "4. Enter a valid wish (up to 120 characters) in the 'Your wish' field.",
+              "5. Optionally enter a name in the 'Your name' field.",
+              "6. Click the 'Submit' button.",
+              "7. Verify the 'Your Wish Is Sealed' confirmation screen is displayed.",
+              "8. Verify the dashboard banner changes to 'Your wish is sealed'.",
+              "9. Verify the 'Your Wish Is Sealed' screen is accessible from the dashboard."
+            ],
+            "expectedResult": "The user is redirected to the 'Your Wish Is Sealed' screen, a confirmation message is displayed, and the dashboard banner changes to 'Your wish is sealed' for the duration of the campaign.",
+            "status": "Draft",
+            "type": "Functional"
+          },
+          {
+            "id": "tc_1791884918943_1_1",
+            "testCaseId": "TC-1-02",
+            "title": "Wish Submission with Empty Name",
+            "preconditions": "User is an eligible active user in the Capital Now app.",
+            "steps": [
+              "1. Navigate to the Capital Now app.",
+              "2. Access the Ganesh Chaturthi campaign banner.",
+              "3. Click on the 'Write Your Wish' button.",
+              "4. Enter a valid wish (up to 120 characters) in the 'Your wish' field.",
+              "5. Leave the 'Your name' field empty.",
+              "6. Click the 'Submit' button.",
+              "7. Verify the 'Your Wish Is Sealed' confirmation screen is displayed.",
+              "8. Verify the dashboard banner changes to 'Your wish is sealed'.",
+              "9. Verify the 'Your Wish Is Sealed' screen is accessible from the dashboard."
+            ],
+            "expectedResult": "The user is redirected to the 'Your Wish Is Sealed' screen, a confirmation message is displayed, and the dashboard banner changes to 'Your wish is sealed' for the duration of the campaign. The 'Your name' field is not populated.",
+            "status": "Draft",
+            "type": "Functional"
+          },
+          {
+            "id": "tc_1791884918943_1_2",
+            "testCaseId": "TC-1-03",
+            "title": "Wish Submission with Long Text",
+            "preconditions": "User is an eligible active user in the Capital Now app.",
+            "steps": [
+              "1. Navigate to the Capital Now app.",
+              "2. Access the Ganesh Chaturthi campaign banner.",
+              "3. Click on the 'Write Your Wish' button.",
+              "4. Enter a wish exceeding the 120-character limit (e.g., 'This is a very long wish that exceeds the character limit.' in the 'Your wish' field).",
+              "5. Optionally enter a name in the 'Your name' field.",
+              "6. Click the 'Submit' button.",
+              "7. Verify the 'Your Wish Is Sealed' confirmation screen is displayed.",
+              "8. Verify the dashboard banner changes to 'Your wish is sealed'.",
+              "9. Verify the 'Your Wish Is Sealed' screen is accessible from the dashboard."
+            ],
+            "expectedResult": "The user is redirected to the 'Your Wish Is Sealed' screen, a confirmation message is displayed, and the dashboard banner changes to 'Your wish is sealed' for the duration of the campaign. The wish text is truncated to 120 characters, and an error message is displayed indicating the character limit.",
+            "status": "Draft",
+            "type": "Functional"
+          }
+        ],
+        "createdAt": "2026-10-13T09:48:38.943Z",
+        "saved": false,
+        "folderId": "",
+        "priority": "High",
+        "tags": [
+          "Positive",
+          "Functional",
+          "AI_GENERATED"
+        ]
+      }
+    ]
   }
 ]

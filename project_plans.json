@@ -695,16 +695,16 @@
     "allocatedCredits": 1000,
     "totalCredits": 1000,
     "validityDays": 30,
-    "cycleStartTimestamp": 1791095533541,
-    "cycleStartDateFormatted": "04-Oct-2026 12:02 PM IST",
-    "subscriptionStartDate": 1791095533541,
-    "cycleEndTimestamp": 1791786733541,
-    "cycleEndDateFormatted": "12-Oct-2026 12:02 PM IST",
-    "subscriptionExpiryDate": 1791786733541,
+    "cycleStartTimestamp": 1791883721728,
+    "cycleStartDateFormatted": "13-Oct-2026 02:58 PM IST",
+    "subscriptionStartDate": 1791883721728,
+    "cycleEndTimestamp": 1794475722728,
+    "cycleEndDateFormatted": "12-Nov-2026 02:58 PM IST",
+    "subscriptionExpiryDate": 1794475722728,
     "status": "active",
     "subscriptionStatus": "active",
     "subscriptionRequestStatus": "none",
-    "consumedCredits": 290,
-    "remainingCredits": 710
+    "consumedCredits": 65,
+    "remainingCredits": 935
   }
 ]

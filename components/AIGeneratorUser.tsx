@@ -614,6 +614,17 @@ const AIGeneratorUser: React.FC<AIGeneratorUserProps> = ({ project, user, onUpda
         storiesToProcess = storiesToProcess.slice(0, 8);
       }
 
+      // Reject a partial/stale local-model response before it can be saved.
+      const hasCompleteStory = (story: any) => {
+        const description = String(story?.description || story?.userStory || story?.story || '').trim();
+        const criteria = String(story?.acceptanceCriteria || story?.acceptance_criteria || story?.criteria || '').trim();
+        return description.length >= 20 && criteria.length >= 20 && /\b(given|when|then)\b/i.test(criteria);
+      };
+      if (storiesToProcess.length < 2 || !storiesToProcess.every(hasCompleteStory)) {
+        storiesToProcess = generateFallbackUserStories(selectedFile?.name, extractedDocText, additionalContext).slice(0, 8);
+        toast.info('AI returned an incomplete response. Generated complete requirement-based user stories instead.');
+      }
+
       if (Array.isArray(storiesToProcess) && storiesToProcess.length > 0) {
         // 1. Create primary input document story
         const inputSourceId = `US_INPUT-${Date.now()}`;
