@@ -8610,7 +8610,7 @@ export function generateFallbackUserStories(docName?: string, docContent?: strin
         summary: capitalizedSummary,
         description: `As a ${role}, I want ${goal}, so that ${benefit}.`,
         acceptanceCriteria: formatAcceptanceCriteria(
-          `Given the user is authenticated as ${role}\nWhen executing ${goal}\nThen the system processes the request successfully\nAnd ${benefit}`
+          `Given ${role} is eligible to use ${cleanSummary}\nWhen ${role} submits ${goal.replace(/\b(and|given|when|then)\b/gi, '&')}\nThen the system completes ${goal.replace(/\b(and|given|when|then)\b/gi, '&')} according to the stated requirement\nAnd ${role} receives confirmation that ${benefit.replace(/\b(and|given|when|then)\b/gi, '&')}`
         )
       });
       return;
@@ -8636,7 +8636,7 @@ export function generateFallbackUserStories(docName?: string, docContent?: strin
       summary: capitalizedSummary,
       description: `As a ${actor}, I want ${summaryTitle.toLowerCase()}, so that ${bodyText.length > 15 ? bodyText.slice(0, 100) : 'user requirements are fulfilled'}.`,
       acceptanceCriteria: formatAcceptanceCriteria(
-        `Given the user is on the relevant view\nWhen executing: ${summaryTitle}\nThen the system validates the action\nAnd updates application state accordingly`
+        `Given ${actor} opens ${summaryTitle}\nWhen ${actor} performs ${summaryTitle.toLowerCase()} using the stated requirement: ${bodyText.slice(0, 160).replace(/\b(and|given|when|then)\b/gi, ',')}\nThen the system applies the documented rule for ${summaryTitle}\nAnd the resulting status & next available action are shown to ${actor}`
       )
     });
   });
@@ -8656,7 +8656,7 @@ export function generateFallbackUserStories(docName?: string, docContent?: strin
       summary,
       description: `As a user, I want to ${goal}, so that I can complete ${requirementTitle} reliably.`,
       acceptanceCriteria: formatAcceptanceCriteria(
-        `Given the user is working with ${requirementTitle}\nWhen the relevant action is performed\nThen the system provides an accurate outcome\nAnd the user can continue the workflow`
+        `Given a user starts ${requirementTitle}\nWhen the user performs the action needed to ${goal.replace(/\band\b/gi, '&')}\nThen the system applies the requirement-specific rules for ${requirementTitle}\nAnd the user sees the resulting ${requirementTitle} status & next action`
       )
     });
   }
@@ -8753,7 +8753,8 @@ export function parseAndNormalizeUserStories(
     const hasCompleteStory = (item: any) => {
       const description = String(item?.description || item?.userStory || item?.story || '').trim();
       const criteria = String(item?.acceptanceCriteria || item?.acceptance_criteria || item?.criteria || '').trim();
-      return description.length >= 20 && criteria.length >= 20 && /\b(given|when|then)\b/i.test(criteria);
+      const genericCriteria = /user is on the relevant view|system validates the action|updates application state accordingly|relevant action is performed|system provides an accurate outcome/i.test(criteria);
+      return description.length >= 20 && criteria.length >= 20 && /\b(given|when|then)\b/i.test(criteria) && !genericCriteria;
     };
     if (candidateArray.length < 2 || !candidateArray.every(hasCompleteStory)) {
       console.warn('[AI] Incomplete user-story response received; using requirement-based fallback stories.');
@@ -8902,7 +8903,7 @@ ${extractedText.substring(0, 20000)}
 For each User Story, return a JSON object with:
 1. **summary**: A specific, descriptive title directly reflecting a distinct requirement or refine instruction from the input. (e.g., "OTP Verification on User Login", "Export User Stories to Jira"). NEVER use generic boilerplate titles.
 2. **description**: A formal User Story description following the standard PM format: "As a [type of user], I want [some goal] so that [some reason/benefit]."
-3. **acceptanceCriteria**: Detailed acceptance criteria strictly derived from the input. Format each Given, When, Then, And statement on its own new line.
+3. **acceptanceCriteria**: Write 3–5 detailed Given/When/Then/And statements strictly derived from the input. Each statement must name the actual feature, actor, field, event, outcome, or business rule from the requirement. NEVER use generic phrases such as "the relevant view", "validates the action", "updates application state", "accurate outcome", or "continue the workflow". A reviewer must identify the exact BRD requirement from the criteria alone.
 
 Return the generated user stories as a JSON array of objects with the exact schema provided. Ensure all keys match the casing exactly.`;
 

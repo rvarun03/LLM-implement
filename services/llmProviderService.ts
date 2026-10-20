@@ -75,7 +75,7 @@ let geminiTimeoutFallback: LLMConfiguration = {
 // Stores evidence, not prompts or output. The hash chain makes in-memory receipt
 // changes detectable while keeping customer data out of this audit view.
 const MAX_RECEIPTS = 100;
-const OLLAMA_CONNECT_TIMEOUT_MS = 8_000;
+const OLLAMA_CONNECT_TIMEOUT_MS = 60_000;
 const OLLAMA_GENERATION_TIMEOUT_MS = 240_000;
 let receipts: ModelExecutionReceipt[] = [];
 let previousReceiptHash = 'GENESIS';
